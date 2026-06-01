@@ -1,170 +1,150 @@
 body {
     margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    background: #081018;
+    color: white;
 }
 
-/* =========================
-   HERO
-========================= */
+/* RAIN OVER ENTIRE PAGE */
+
+.rain {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+
+    z-index: 100;
+}
+
+.rain span {
+    position: absolute;
+    top: -200px;
+
+    width: 2px;
+    height: 90px;
+
+    background: linear-gradient(
+        transparent,
+        rgba(255,255,255,0.9)
+    );
+
+    transform: rotate(6deg);
+
+    opacity: 0.8;
+
+    animation: rainfall linear infinite;
+}
+
+@keyframes rainfall {
+    from {
+        transform: translateY(-200px) translateX(0) rotate(6deg);
+    }
+
+    to {
+        transform: translateY(120vh) translateX(40px) rotate(6deg);
+    }
+}
+
+/* HERO */
 
 .hero {
     position: relative;
     height: 100vh;
-    overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-
-    color: white;
     text-align: center;
+
+    overflow: hidden;
 }
 
-/* blurred background */
 .hero::before {
     content: "";
+
     position: absolute;
     inset: 0;
 
-    background: url("images/flooding.jpg") center/cover no-repeat;
+    background:
+        linear-gradient(
+            rgba(0,0,0,.65),
+            rgba(0,0,0,.75)
+        ),
+        url("images/flooding.jpg");
 
-    filter: blur(3px) brightness(0.65);
-    transform: scale(1.1);
+    background-size: cover;
+    background-position: center;
 
-    z-index: 0;
+    filter: blur(4px);
+    transform: scale(1.08);
+
+    z-index: -1;
 }
-
-/* dark overlay */
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.55);
-
-    z-index: 1;
-}
-
-/* =========================
-   TEXT
-========================= */
 
 .content {
     position: relative;
     z-index: 5;
-    max-width: 1000px;
-    padding: 0 20px;
+    max-width: 900px;
+    padding: 0 40px;
 }
 
 h1 {
     font-size: 4rem;
-    margin: 0;
+    margin-bottom: 20px;
     font-weight: 800;
-    letter-spacing: 1px;
 }
 
 p {
     font-size: 1.4rem;
-    font-weight: 300;
-    margin-top: 20px;
-
-    padding: 0 60px;
-    line-height: 1.6;
-
-    color: rgba(220, 230, 235, 0.9);
+    line-height: 1.8;
+    color: rgba(255,255,255,.85);
 }
 
-/* =========================
-   RAIN SYSTEM
-========================= */
+/* SCROLL TEXT */
 
-.rain {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 3;
+.scroll-indicator {
+    margin-top: 50px;
+
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    opacity: .75;
+
+    animation: bounce 2s infinite;
 }
 
-/* raindrops */
-.rain span {
-    position: absolute;
-    top: -120px;
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
 
-    width: 1px;
-    height: 100px;
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+/* SECOND PAGE */
+
+.explore-section {
+    min-height: 100vh;
 
     background: linear-gradient(
-        transparent,
-        rgba(181, 212, 241, 0.95)
+        180deg,
+        #081018 0%,
+        #10233f 50%,
+        #183d66 100%
     );
 
-    opacity: 0.7;
-
-    transform: rotate(0deg);
-
-    animation: fall linear infinite;
+    padding: 120px 10%;
+    position: relative;
+    z-index: 5;
 }
 
-/* variation for realism */
-.rain span:nth-child(2n) {
-    height: 18px;
-    opacity: 0.5;
+.explore-section h2 {
+    font-size: 3rem;
 }
 
-.rain span:nth-child(3n) {
-    height: 35px;
-    width: 2px;
-    opacity: 0.9;
-}
-
-.rain span:nth-child(5n) {
-    transform: rotate(22deg);
-}
-
-/* =========================
-   ANIMATION (FIXED WIND)
-========================= */
-
-@keyframes fall {
-    0% {
-        transform: translateY(-120vh) translateX(0) rotate(0deg);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(120vh) translateX(140px) rotate(0deg);
-        opacity: 1;
-    }
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-.explore-btn {
-    margin-top: 20px;
-    padding: 12px 24px;
-
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-
-    color: white;
-    background: rgba(255, 255, 255, 0.1);
-
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(6px);
-
-    transition: all 0.3s ease;
-}
-
-.explore-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
+.explore-section p {
+    max-width: 800px;
 }
