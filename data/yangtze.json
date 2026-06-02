@@ -122,9 +122,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"April",
-        "pr_sum":135.4080810547,
-        "pr_mean":6.1549129486,
-        "pr_max":10.5904169083
+        "pr_sum":100.8711547852,
+        "pr_mean":4.5850524902,
+        "pr_max":10.453001976
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -249,9 +249,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"August",
-        "pr_sum":30.3036613464,
-        "pr_mean":1.3774391413,
-        "pr_max":3.8931369781
+        "pr_sum":75.8340682983,
+        "pr_mean":3.4470031261,
+        "pr_max":7.2802391052
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -376,9 +376,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"December",
-        "pr_sum":27.3892879486,
-        "pr_mean":1.2449675798,
-        "pr_max":1.4851135015
+        "pr_sum":11.9972915649,
+        "pr_mean":0.5453314185,
+        "pr_max":1.3681772947
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -503,9 +503,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"February",
-        "pr_sum":35.5949478149,
-        "pr_mean":1.6179522276,
-        "pr_max":2.5558478832
+        "pr_sum":53.0322532654,
+        "pr_mean":2.4105570316,
+        "pr_max":4.8872866631
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -630,9 +630,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"January",
-        "pr_sum":31.5439567566,
-        "pr_mean":1.4338161945,
-        "pr_max":1.9290103912
+        "pr_sum":9.599905014,
+        "pr_mean":0.4363593161,
+        "pr_max":0.9962102771
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -757,9 +757,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"July",
-        "pr_sum":128.6332702637,
-        "pr_mean":5.8469667435,
-        "pr_max":7.4225010872
+        "pr_sum":101.6369552612,
+        "pr_mean":4.6198616028,
+        "pr_max":5.8446803093
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -884,9 +884,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"June",
-        "pr_sum":92.4039077759,
-        "pr_mean":4.2001776695,
-        "pr_max":5.5886220932
+        "pr_sum":73.0932922363,
+        "pr_mean":3.322422266,
+        "pr_max":5.0556578636
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1011,9 +1011,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"March",
-        "pr_sum":76.7927474976,
-        "pr_mean":3.4905793667,
-        "pr_max":4.0340723991
+        "pr_sum":81.0397262573,
+        "pr_mean":3.6836240292,
+        "pr_max":7.4836678505
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1138,9 +1138,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"May",
-        "pr_sum":87.6518783569,
-        "pr_mean":3.9841763973,
-        "pr_max":6.753991127
+        "pr_sum":141.8596038818,
+        "pr_mean":6.4481639862,
+        "pr_max":11.9574127197
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1265,9 +1265,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"November",
-        "pr_sum":42.2078895569,
-        "pr_mean":1.9185404778,
-        "pr_max":2.5456321239
+        "pr_sum":58.3335876465,
+        "pr_mean":2.6515266895,
+        "pr_max":4.167222023
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1392,9 +1392,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"October",
-        "pr_sum":18.2268047333,
-        "pr_mean":0.8284911513,
-        "pr_max":1.6076202393
+        "pr_sum":42.838054657,
+        "pr_mean":1.9471843243,
+        "pr_max":3.0171880722
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1519,9 +1519,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"September",
-        "pr_sum":59.139251709,
-        "pr_mean":2.6881477833,
-        "pr_max":6.4406151772
+        "pr_sum":11.3985843658,
+        "pr_mean":0.5181174874,
+        "pr_max":1.1093187332
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1646,9 +1646,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"April",
-        "pr_sum":206.0660095215,
-        "pr_mean":7.3595004082,
-        "pr_max":9.8866968155
+        "pr_sum":128.5617370605,
+        "pr_mean":4.5914907455,
+        "pr_max":7.4938759804
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1773,9 +1773,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"August",
-        "pr_sum":59.3660697937,
-        "pr_mean":2.1202168465,
-        "pr_max":4.629140377
+        "pr_sum":118.9383621216,
+        "pr_mean":4.2477984428,
+        "pr_max":6.2250261307
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -1900,9 +1900,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"December",
-        "pr_sum":23.1857128143,
-        "pr_mean":0.8280611634,
-        "pr_max":1.0481926203
+        "pr_sum":5.5464911461,
+        "pr_mean":0.1980889738,
+        "pr_max":0.4520909786
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2027,9 +2027,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"February",
-        "pr_sum":68.1649627686,
-        "pr_mean":2.4344630241,
-        "pr_max":2.9786710739
+        "pr_sum":74.4009017944,
+        "pr_mean":2.6571750641,
+        "pr_max":4.2240037918
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2154,9 +2154,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"January",
-        "pr_sum":41.3439941406,
-        "pr_mean":1.4765712023,
-        "pr_max":2.2311947346
+        "pr_sum":24.6601467133,
+        "pr_mean":0.8807195425,
+        "pr_max":1.3418885469
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2281,9 +2281,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"July",
-        "pr_sum":144.8203735352,
-        "pr_mean":5.1721563339,
-        "pr_max":6.9928150177
+        "pr_sum":73.3446044922,
+        "pr_mean":2.6194500923,
+        "pr_max":3.6133682728
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2408,9 +2408,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"June",
-        "pr_sum":81.9095611572,
-        "pr_mean":2.9253413677,
-        "pr_max":4.5104527473
+        "pr_sum":74.4929351807,
+        "pr_mean":2.6604619026,
+        "pr_max":3.5925247669
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2535,9 +2535,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"March",
-        "pr_sum":89.5512390137,
-        "pr_mean":3.1982586384,
-        "pr_max":4.0066370964
+        "pr_sum":113.9386978149,
+        "pr_mean":4.0692391396,
+        "pr_max":5.3464913368
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2662,9 +2662,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"May",
-        "pr_sum":124.3086013794,
-        "pr_mean":4.4395928383,
-        "pr_max":6.8441133499
+        "pr_sum":265.4237976074,
+        "pr_mean":9.4794216156,
+        "pr_max":13.1773605347
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2789,9 +2789,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"November",
-        "pr_sum":60.9229278564,
-        "pr_mean":2.1758189201,
-        "pr_max":2.9360432625
+        "pr_sum":63.4209899902,
+        "pr_mean":2.2650353909,
+        "pr_max":2.8556325436
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -2916,9 +2916,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"October",
-        "pr_sum":48.6534805298,
-        "pr_mean":1.7376242876,
-        "pr_max":3.0041615963
+        "pr_sum":74.6971511841,
+        "pr_mean":2.6677553654,
+        "pr_max":3.6038174629
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3043,9 +3043,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"September",
-        "pr_sum":180.8828735352,
-        "pr_mean":6.4601025581,
-        "pr_max":10.4585409164
+        "pr_sum":40.0149726868,
+        "pr_mean":1.4291061163,
+        "pr_max":2.8929641247
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3170,9 +3170,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"April",
-        "pr_sum":268.4176635742,
-        "pr_mean":8.3880519867,
-        "pr_max":9.841258049
+        "pr_sum":241.8081359863,
+        "pr_mean":7.5565042496,
+        "pr_max":9.935177803
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3297,9 +3297,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"August",
-        "pr_sum":222.549987793,
-        "pr_mean":6.9546871185,
-        "pr_max":10.0426092148
+        "pr_sum":125.351852417,
+        "pr_mean":3.917245388,
+        "pr_max":8.862944603
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3424,9 +3424,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"December",
-        "pr_sum":21.3675899506,
-        "pr_mean":0.667737186,
-        "pr_max":0.9947928786
+        "pr_sum":31.1145439148,
+        "pr_mean":0.9723294973,
+        "pr_max":1.7755153179
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3551,9 +3551,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"February",
-        "pr_sum":113.5683746338,
-        "pr_mean":3.5490117073,
-        "pr_max":4.4541926384
+        "pr_sum":136.4022369385,
+        "pr_mean":4.2625699043,
+        "pr_max":4.8734455109
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3678,9 +3678,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"January",
-        "pr_sum":56.4186935425,
-        "pr_mean":1.7630841732,
-        "pr_max":2.3963472843
+        "pr_sum":40.2560157776,
+        "pr_mean":1.258000493,
+        "pr_max":1.4526096582
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3805,9 +3805,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"July",
-        "pr_sum":210.0397949219,
-        "pr_mean":6.5637435913,
-        "pr_max":9.9836473465
+        "pr_sum":73.4921722412,
+        "pr_mean":2.2966303825,
+        "pr_max":3.6191830635
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -3932,9 +3932,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"June",
-        "pr_sum":204.7613220215,
-        "pr_mean":6.3987913132,
-        "pr_max":8.4520215988
+        "pr_sum":135.5816955566,
+        "pr_mean":4.2369279861,
+        "pr_max":10.6251602173
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4059,9 +4059,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"March",
-        "pr_sum":132.153717041,
-        "pr_mean":4.1298036575,
-        "pr_max":5.1756753922
+        "pr_sum":128.9961242676,
+        "pr_mean":4.0311288834,
+        "pr_max":5.0592002869
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4186,9 +4186,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"May",
-        "pr_sum":217.7677764893,
-        "pr_mean":6.8052430153,
-        "pr_max":7.9521179199
+        "pr_sum":272.8096923828,
+        "pr_mean":8.525302887,
+        "pr_max":14.7955875397
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4313,9 +4313,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"November",
-        "pr_sum":49.4145889282,
-        "pr_mean":1.544205904,
-        "pr_max":2.8367116451
+        "pr_sum":84.0426559448,
+        "pr_mean":2.6263329983,
+        "pr_max":3.4327189922
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4440,9 +4440,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"October",
-        "pr_sum":31.4020175934,
-        "pr_mean":0.9813130498,
-        "pr_max":1.9626607895
+        "pr_sum":84.8244628906,
+        "pr_mean":2.6507644653,
+        "pr_max":3.7512345314
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4567,9 +4567,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"September",
-        "pr_sum":144.5165863037,
-        "pr_mean":4.516143322,
-        "pr_max":6.9454174042
+        "pr_sum":33.7602729797,
+        "pr_mean":1.0550085306,
+        "pr_max":1.486045599
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4694,9 +4694,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"April",
-        "pr_sum":69.848449707,
-        "pr_mean":4.3655281067,
-        "pr_max":7.0761804581
+        "pr_sum":42.9810638428,
+        "pr_mean":2.6863164902,
+        "pr_max":5.86043787
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4821,9 +4821,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"August",
-        "pr_sum":37.3153381348,
-        "pr_mean":2.3322086334,
-        "pr_max":2.7074093819
+        "pr_sum":81.7674255371,
+        "pr_mean":5.1104640961,
+        "pr_max":7.478161335
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -4948,9 +4948,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"December",
-        "pr_sum":17.5061340332,
-        "pr_mean":1.0941333771,
-        "pr_max":1.3667536974
+        "pr_sum":9.2509307861,
+        "pr_mean":0.5781831741,
+        "pr_max":1.1816310883
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5075,9 +5075,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"February",
-        "pr_sum":17.3607521057,
-        "pr_mean":1.0850470066,
-        "pr_max":1.4240958691
+        "pr_sum":27.8328781128,
+        "pr_mean":1.739554882,
+        "pr_max":3.9062247276
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5202,9 +5202,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"January",
-        "pr_sum":19.6728572845,
-        "pr_mean":1.2295535803,
-        "pr_max":1.6419098377
+        "pr_sum":5.0821642876,
+        "pr_mean":0.317635268,
+        "pr_max":0.6686379313
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5329,9 +5329,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"July",
-        "pr_sum":110.2402496338,
-        "pr_mean":6.8900156021,
-        "pr_max":9.365571022
+        "pr_sum":73.682510376,
+        "pr_mean":4.6051568985,
+        "pr_max":5.8439435959
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5456,9 +5456,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"June",
-        "pr_sum":55.4718170166,
-        "pr_mean":3.4669885635,
-        "pr_max":6.0765256882
+        "pr_sum":58.89453125,
+        "pr_mean":3.6809082031,
+        "pr_max":4.2385354042
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5583,9 +5583,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"March",
-        "pr_sum":48.1630325317,
-        "pr_mean":3.0101895332,
-        "pr_max":3.9615983963
+        "pr_sum":44.8535118103,
+        "pr_mean":2.8033444881,
+        "pr_max":5.2536931038
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5710,9 +5710,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"May",
-        "pr_sum":58.6779823303,
-        "pr_mean":3.6673738956,
-        "pr_max":5.052593708
+        "pr_sum":55.852519989,
+        "pr_mean":3.4907824993,
+        "pr_max":7.9601092339
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5837,9 +5837,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"November",
-        "pr_sum":21.5209674835,
-        "pr_mean":1.3450604677,
-        "pr_max":1.9220746756
+        "pr_sum":42.6650657654,
+        "pr_mean":2.6665666103,
+        "pr_max":4.4686822891
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -5964,9 +5964,9 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"October",
-        "pr_sum":13.5322723389,
-        "pr_mean":0.8457670212,
-        "pr_max":1.7237277031
+        "pr_sum":26.7922954559,
+        "pr_mean":1.674518466,
+        "pr_max":2.7719316483
     },
     {
         "featurecla":"Admin-1 scale rank",
@@ -6091,8 +6091,8 @@
         "FCLASS_UA":null,
         "FCLASS_TLC":null,
         "month":"September",
-        "pr_sum":34.635684967,
-        "pr_mean":2.1647303104,
-        "pr_max":5.8249425888
+        "pr_sum":12.1268463135,
+        "pr_mean":0.7579278946,
+        "pr_max":1.6935483217
     }
 ]
