@@ -131,7 +131,7 @@ h1 {
 
 .cloud-layer.layer-mid {
     background-image: url('images/c3.svg'); 
-    background-size: 500px; /
+    background-size: 500px; 
     background-repeat: repeat;
     background-position: 20% 40%; 
     opacity: 0.5;
@@ -207,14 +207,18 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 /* Responsive aspect-ratio box protects map layout proportions across all devices */
 .map-frame {
     position: relative;
-    width: 90vw;
-    max-width: 1600px;
+    width: 200vw;
+    max-width: 5000px;
     aspect-ratio: 16 / 8;
+    transform: scale(1.2); 
+    
+    transform-origin: center center;
 }
 
 .world-map {
