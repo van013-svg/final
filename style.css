@@ -5,14 +5,13 @@ body {
     color: white;
 }
 
-/* RAIN OVER ENTIRE PAGE */
+/* 🌧️ RAIN */
 
 .rain {
     position: fixed;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
-
     z-index: 100;
 }
 
@@ -23,34 +22,37 @@ body {
     width: 2px;
     height: 90px;
 
-    background: linear-gradient(
-        transparent,
-        rgba(255,255,255,0.9)
-    );
-
-    transform: rotate(6deg);
+    background: linear-gradient(transparent, rgba(255,255,255,0.9));
 
     opacity: 0.8;
-
     animation: rainfall linear infinite;
 }
 
 @keyframes rainfall {
-    from {
-        transform: translateY(-200px) translateX(0) rotate(6deg);
-    }
-
-    to {
-        transform: translateY(120vh) translateX(40px) rotate(6deg);
-    }
+    from { transform: translateY(-200px); }
+    to { transform: translateY(120vh); }
 }
 
-/* HERO */
+/* 🌊 SCENE WRAPPER */
 
-.hero {
+.scene-wrapper {
     position: relative;
     height: 100vh;
+}
 
+/* shared scene base */
+
+.scene {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    transition: opacity 0.2s linear;
+}
+
+/* 🌧️ HERO */
+
+.hero {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,25 +63,78 @@ body {
 
 .hero::before {
     content: "";
-
     position: absolute;
-    inset: 0;
+    inset: -10px;
 
     background:
-        linear-gradient(
-            rgba(0,0,0,.65),
-            rgba(0,0,0,.75)
-        ),
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.75)),
         url("images/flooding.jpg");
 
     background-size: cover;
     background-position: center;
 
     filter: blur(4px);
-    transform: scale(1.08);
-
+    transform: scale(1.05);
     z-index: -1;
 }
+
+/* ☁️ CLOUD SCENE */
+
+.cloud-scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: #081018;
+
+    opacity: 0;
+}
+
+/* DARK OVERLAY */
+
+.cloud-scene::before {
+    background: radial-gradient(
+        circle at center,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.55)
+    );
+}
+
+/* CLOUDS */
+
+.clouds {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.cloud {
+    position: absolute;
+    width: 900px;
+    max-width: 120vw;
+}
+
+/* main cloud */
+.main-cloud {
+    top: -25%;
+    left: 50%;
+    transform: translateX(-50%) scale(1.6);
+    opacity: 0.5;
+    filter: blur(2px);
+}
+
+/* background clouds */
+.cloud-back {
+    opacity: 0.5;
+    filter: blur(8px);
+}
+
+.c-back1 { top: -40%; left: -20%; }
+.c-back2 { top: -30%; left: 40%; }
+.c-back3 { top: -50%; left: 70%; }
+
+/* TEXT */
 
 .content {
     position: relative;
@@ -90,61 +145,51 @@ body {
 
 h1 {
     font-size: 4rem;
-    margin-bottom: 20px;
     font-weight: 800;
 }
 
 p {
     font-size: 1.4rem;
     line-height: 1.8;
-    color: rgba(255,255,255,.85);
+    color: rgba(255,255,255,0.85);
 }
 
-/* SCROLL TEXT */
-
 .scroll-indicator {
-    margin-top: 50px;
-
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-
-    opacity: .75;
-
+    margin-top: 40px;
+    opacity: 0.7;
     animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(8px);
-    }
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
 }
 
-/* SECOND PAGE */
+/* 🌊 EXPLORE */
 
 .explore-section {
     min-height: 100vh;
+    padding: 120px 10%;
+    background: linear-gradient(#081018, #183d66);
+}
 
-    background: linear-gradient(
-        180deg,
-        #081018 0%,
-        #10233f 50%,
-        #183d66 100%
+.sky-scene::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.85)
     );
 
-    padding: 120px 10%;
-    position: relative;
-    z-index: 5;
+    z-index: 1;
 }
 
-.explore-section h2 {
-    font-size: 3rem;
-}
-
-.explore-section p {
-    max-width: 800px;
+.hero,
+.page,
+.cloud-scene,
+.sky-scene {
+    margin: 0;
 }
