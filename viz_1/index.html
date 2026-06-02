@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China Monthly Precipitation Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="eyebrow">Precipitation Data • Historical Floods • DSC 106</div>
+            <h1>Flood Atlas: Mapping Flood-Related Climate Conditions</h1>
+            <p class="subtitle">This interactive visualization uses regional historical precipitation data to explore annual trends, precipitation variances, and climate variables near major flood basins.</p>
+        </div>
+    </header>
+    <div id="container">
+        
+        <section class="intro-card">
+            <h2>Project Overview</h2>
+            <p>This project uses regional meteorological data to examine climate conditions that contribute to catastrophic basin overflows. Instead of focusing on simple average trends, the dashboard exposes multi-metric profiles across target impact areas.</p>
+            <p>Use the event selectors below to highlight historical zones, scrub the time framework slider across months, and swap visualization variables to watch regional climate dynamics react.</p>
+        </section>
+        <section class="viz-card">
+            <div class="section-heading">
+                <h2>Historical Flood Event Map</h2>
+                <p>
+                    Click a target flood zone to focus on the affected geography. Use the month slider and selector to cycle data matrices.
+                </p>
+            </div>
+            <div id="controls">
+                <div class="slider-box">
+                    <div class="slider-label">Month: <span id="month-display" style="color: #3182ce; font-size: 18px;">January</span></div>
+                    <div class="slider-container">
+                        <span>Jan</span>
+                        <input type="range" id="month-slider" min="0" max="11" value="0">
+                        <span>Dec</span>
+                    </div>
+                </div>
+                <div class="metric-selector">
+                    <label for="metric-select">Visualization Metric: </label>
+                    <select id="metric-select">
+                        <option value="pr_sum" selected>Total Precipitation (pr_sum)</option>
+                        <option value="pr_mean">Mean Precipitation (pr_mean)</option>
+                        <option value="pr_max">Max Precipitation (pr_max)</option>
+                    </select>
+                </div>
+            </div>
+            <div id="map-wrapper">
+                <div id="map"></div>
+            </div>
+            
+
+            <!-- <div class="map-button-row" id="floodButtonRow">
+                <button id="resetMap" class="map-button">⤢ Reset view</button>
+                <button class="map-button map-button--flood flood-event-button" data-event="yellow-river">🌊 Yellow River Flood</button>
+                <button class="map-button map-button--flood flood-event-button" data-event="yangtze-river">🌊 Yangtze River Flood</button>
+                <button class="map-button map-button--flood flood-event-button" data-event="mississippi-river">🌊 Mississippi River</button>
+                <button class="map-button map-button--flood flood-event-button" data-event="danube-river">🌊 Danube River</button>
+                <button class="map-button map-button--flood flood-event-button" data-event="pakistan-floods">🌊 Pakistan Super Floods</button>
+            </div>
+            
+
+            <div class="metric-selector-container" style="margin: 15px 0; display: flex; align-items: center; gap: 10px;">
+                <label for="metric-select" style="font-weight:600; color: #fff;">Visualization Metric: </label>
+                <select id="metric-select" style="padding: 6px 12px; border-radius: 4px; border: 1px solid #1e6091; background-color: #0c2f47; color: #fff; outline: none;">
+                    <option value="pr_sum" selected>Total Precipitation (pr_sum)</option>
+                    <option value="pr_mean">Mean Precipitation (pr_mean)</option>
+                    <option value="pr_max">Max Precipitation (pr_max)</option>
+                </select>
+            </div>
+
+            <div id="flood-annotation" class="flood-annotation hidden">
+                <button id="closeFloodCard" class="flood-annotation__close" aria-label="Close details">×</button>
+                <div class="flood-annotation__eyebrow">Selected climate event context</div>
+                <div class="flood-annotation__title" id="floodCardTitle">—</div>
+                <div class="flood-annotation__sub" id="floodCardSubtitle">—</div>
+                <div class="flood-annotation__divider"></div>
+                <p class="flood-annotation__body" id="floodCardBody">—</p>
+                <div class="flood-annotation__divider"></div>
+
+                <div class="flood-annotation__factors-label">Regional Precipitation Values (<span id="floodIndicatorYear">January</span>)</div>
+                <div class="flood-annotation__factors">
+                    <div class="flood-factor">
+                        <span class="flood-factor__dot" style="background: #2171b5;"></span>
+                        <span>Total Monthly Precip: <strong id="regionAnnualPrecip">—</strong></span>
+                    </div>
+                    <div class="flood-factor">
+                        <span class="flood-factor__dot" style="background: #41ab5d;"></span>
+                        <span>Daily Mean Precip: <strong id="regionPrecipAnomaly">—</strong></span>
+                    </div>
+                    <div class="flood-factor">
+                        <span class="flood-factor__dot" style="background: #9c27b0;"></span>
+                        <span>Max Recorded Daily: <strong id="regionMaxMonthly">—</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map" style="height: 560px; width: 100%; border-radius: 8px; position: relative;"></div>
+
+            <div class="map-year-control">
+                <label for="monthSlider">
+                    Selected Month:
+                    <span id="monthLabel" style="color: #38bdf8; font-weight: bold;">January</span>
+                </label>
+                <input type="range" id="monthSlider" min="0" max="11" step="1" value="0" />
+                <div class="slider-labels map-slider-labels">
+                    <span>Jan</span>
+                    <span>Dec</span>
+                </div>
+            </div> -->
+        </section>
+
+        
+
+        
+    </div>
+    <a href="../index.html" id="btn-back" class="nav-scroll-btn">← Back</a>
+    <a href="../viz_2/index.html" id="btn-next" class="nav-scroll-btn">Next →</a>
+
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="main.js"></script>
+</body>
+</html>
