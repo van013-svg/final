@@ -122,18 +122,25 @@ h1 {
     mix-blend-mode: screen; /* Converts black areas of pictures directly to alpha clarity */
 }
 
-/* Base fog layer background (Massive, heavy overcast texture) */
+
 .cloud-layer.layer-bg {
     background-image: url('images/c1.png');
     opacity: 0.4;
     transform: scale(1.1);
 }
 
-/* Thick foreground fog (Heavy, dark texture that will blend seamlessly with your blur) */
+.cloud-layer.layer-mid {
+    background-image: url('images/c3.svg'); 
+    background-size: 500px; /
+    background-repeat: repeat;
+    background-position: 20% 40%; 
+    opacity: 0.5;
+}
+
 .cloud-layer.layer-fg {
     background-image: url('images/clouds.png');
     opacity: 0.85;
-    filter: blur(4px) contrast(1.3) brightness(0.3); /* Forces it to stay ultra-dark and dense */
+    filter: blur(4px) contrast(1.3) brightness(0.3); 
     transform: scale(1.4);
 }
 
