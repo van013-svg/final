@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Add the click functionality safely if the button exists on the page
     if (exploreBtn) {
         exploreBtn.addEventListener('click', () => {
-            // Change this path to the exact relative path of the file in your repo
-            window.location.href = '../viz_1/index.html'; 
+            window.location.href = 'viz_1/index.html'; 
         });
     }
 });
