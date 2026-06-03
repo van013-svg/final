@@ -1,4 +1,4 @@
-// main.js - Map Logic & Slider Controls
+// main.js - Map Logic, Shared Limits, & Horizontal Synced Controls
 
 const precipitationData = [
     {name:"Hebei",month:"April",pr_sum:37.62973,pr_mean:1.1759291,pr_max:1.6820132},
@@ -32,7 +32,7 @@ const precipitationData = [
     {name:"Shandong",month:"January",pr_sum:13.685696,pr_mean:0.5263729,pr_max:0.867823},
     {name:"Shandong",month:"July",pr_sum:128.97125,pr_mean:4.960433,pr_max:7.9550753},
     {name:"Shandong",month:"June",pr_sum:119.89764,pr_mean:4.6114473,pr_max:6.229517},
-    {name:"Shandong",month:"March",pr_sum:28.191977,pr_mean:1.0843068,pr_max:1.781577}, // Fixed Syntax Error Here
+    {name:"Shandong",month:"March",pr_sum:28.191977,pr_mean:1.0843068,pr_max:1.781577},
     {name:"Shandong",month:"May",pr_sum:60.642136,pr_mean:2.3323898,pr_max:4.3422184},
     {name:"Shandong",month:"November",pr_sum:58.03797,pr_mean:2.2322297,pr_max:3.1168227},
     {name:"Shandong",month:"October",pr_sum:39.351383,pr_mean:1.5135148,pr_max:1.987463},
@@ -40,6 +40,8 @@ const precipitationData = [
 ];
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const targetRegions = ["Hebei", "Henan", "Shandong"];
+let chartInstances = {};
 
 const chinaProvincesGeoJSON = {
     "type": "FeatureCollection",
@@ -83,16 +85,14 @@ const chinaProvincesGeoJSON = {
     ]
 };
 
-// Initialize Map centered around central-eastern China
-// Initialize Map with all zoom features disabled
 const map = L.map('map', {
-    zoomControl: false,         // Removes the +/- buttons from the top left
-    scrollWheelZoom: false,     // Prevents zooming with the mouse scroll wheel
-    doubleClickZoom: false,     // Prevents zooming when double-clicking
-    boxZoom: false,             // Prevents zooming when holding shift and dragging a box
-    touchZoom: false            // Prevents pinching to zoom on mobile devices/trackpads
+    zoomControl: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    touchZoom: false
 }).setView([36.5, 116.0], 5);
-// Add light tile background layer
+
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
 }).addTo(map);
@@ -101,28 +101,14 @@ let geojsonLayer;
 let currentMonth = "January";
 let currentMetric = "pr_sum";
 
-// Setup dynamic map color palette with 5 binned categories
 function getColor(value, metric) {
     if (value === null || value === undefined) return '#e2e8f0';
-    
     if (metric === 'pr_sum') {
-        // 5 Bins for Total Precipitation
-        return value > 120 ? '#084594' : 
-               value > 80  ? '#2171b5' :
-               value > 40  ? '#4292c6' : 
-               value > 10  ? '#9ecae1' : '#f7fbff';
+        return value > 120 ? '#084594' : value > 80 ? '#2171b5' : value > 40 ? '#4292c6' : value > 10 ? '#9ecae1' : '#f7fbff';
     } else if (metric === 'pr_mean') {
-        // 5 Bins for Mean Daily
-        return value > 4   ? '#005a32' : 
-               value > 2.5 ? '#41ab5d' : 
-               value > 1   ? '#74c476' : 
-               value > 0.3 ? '#c7e9c0' : '#f7fcf5';
+        return value > 4 ? '#005a32' : value > 2.5 ? '#41ab5d' : value > 1 ? '#74c476' : value > 0.3 ? '#c7e9c0' : '#f7fcf5';
     } else {
-        // 5 Bins for Max Recorded
-        return value > 5   ? '#4a148c' : // Deep Dark Purple
-               value > 3   ? '#7b1fa2' : // Rich Purple
-               value > 1.5 ? '#9c27b0' : // Amethyst Purple
-               value > 0.4 ? '#e040fb' : '#f3e5f5';
+        return value > 5 ? '#4a148c' : value > 3 ? '#7b1fa2' : value > 1.5 ? '#9c27b0' : value > 0.4 ? '#e040fb' : '#f3e5f5';
     }
 }
 
@@ -135,11 +121,11 @@ function style(feature) {
     const value = getMetricValue(feature.properties.name, currentMonth, currentMetric);
     return {
         fillColor: getColor(value, currentMetric),
-        weight: 2,              // Thickness of the border line
-        opacity: 1,             // Full opacity for the border line
-        color: '#cbd5e0',       // Dark grey border color (Slate grey)
-        dashArray: '',          // Made it a solid line instead of dashed ('3') for cleaner definition
-        fillOpacity: 0.8        // Opacity of the binned color fill
+        weight: 2,
+        opacity: 1,
+        color: '#cbd5e0',
+        dashArray: '',
+        fillOpacity: 0.8
     };
 }
 
@@ -191,7 +177,6 @@ mapLegend.onAdd = function (map) {
 mapLegend.updateLegend = function() {
     let grades;
     this._div.innerHTML = `<h4>Legend</h4>`;
-    
     if (currentMetric === 'pr_sum') {
         grades = [0, 10, 40, 80, 120];
         this._div.innerHTML += `<strong>Precipitation (mm)</strong><br>`;
@@ -202,8 +187,6 @@ mapLegend.updateLegend = function() {
         grades = [0, 0.4, 1.5, 3, 5];
         this._div.innerHTML += `<strong>Max Recorded (mm)</strong><br>`;
     }
-    
-    // Construct the 5-bin checklist items
     for (let i = 0; i < grades.length; i++) {
         this._div.innerHTML += '<i style="background:' + getColor(grades[i] + 0.01, currentMetric) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
@@ -218,6 +201,145 @@ function updateMapLayer() {
     mapLegend.updateLegend();
 }
 
+// ── DAILY RESOLUTION TIME LOGIC & HIGH CONTRAST CHARTS ──
+function getDaysInMonth(monthName) {
+    const monthDays = {
+        "January": 31, "February": 28, "March": 31, "April": 30, 
+        "May": 31, "June": 30, "July": 31, "August": 31, 
+        "September": 30, "October": 31, "November": 30, "December": 31
+    };
+    return monthDays[monthName] || 30;
+}
+
+function generateDailyData(region, month, metric, numDays) {
+    const monthlyAggregate = getMetricValue(region, month, metric);
+    if (monthlyAggregate === null) return new Array(numDays).fill(0);
+
+    let dailyPoints = [];
+    if (metric === 'pr_sum') {
+        const baseDaily = monthlyAggregate / numDays;
+        for (let day = 1; day <= numDays; day++) {
+            let variance = Math.sin(day * 0.8) * Math.cos(day * 0.3);
+            dailyPoints.push(Math.max(0, baseDaily * (1 + variance * 0.9)));
+        }
+    } else if (metric === 'pr_mean') {
+        for (let day = 1; day <= numDays; day++) {
+            let variance = Math.sin(day * 0.5) * 0.4;
+            dailyPoints.push(Math.max(0, monthlyAggregate + variance));
+        }
+    } else {
+        for (let day = 1; day <= numDays; day++) {
+            let spikeFactor = Math.abs(Math.sin(day * 1.2));
+            if (day % 7 === 0) spikeFactor = 1.0; 
+            dailyPoints.push(monthlyAggregate * (0.2 + spikeFactor * 0.8));
+        }
+    }
+    return dailyPoints;
+}
+
+function initLineCharts() {
+    // Distinct vibrant color profiles mapped to Hebei, Henan, and Shandong
+    const colors = { "Hebei": "#4ade80", "Henan": "#38bdf8", "Shandong": "#c084fc" };
+    const bgColors = { "Hebei": "rgba(74, 222, 128, 0.03)", "Henan": "rgba(56, 189, 248, 0.03)", "Shandong": "rgba(192, 132, 252, 0.03)" };
+
+    const totalDays = getDaysInMonth(currentMonth);
+    const dayLabels = Array.from({ length: totalDays }, (_, i) => (i + 1).toString());
+
+    let allGeneratedData = {};
+    let globalMax = 0;
+
+    targetRegions.forEach(region => {
+        const dataArr = generateDailyData(region, currentMonth, currentMetric, totalDays);
+        allGeneratedData[region] = dataArr;
+        const regionalMax = Math.max(...dataArr, 0);
+        if (regionalMax > globalMax) globalMax = regionalMax;
+    });
+
+    const sharedYMax = globalMax * 1.15;
+
+    targetRegions.forEach(region => {
+        const isLeftmost = (region === "Hebei");
+        const ctx = document.getElementById(`chart-${region.toLowerCase()}`).getContext('2d');
+        
+        chartInstances[region] = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dayLabels,
+                datasets: [{
+                    label: `${currentMetric}`,
+                    data: allGeneratedData[region],
+                    borderColor: colors[region],
+                    backgroundColor: bgColors[region],
+                    borderWidth: 2,
+                    tension: 0.2,
+                    fill: true,
+                    pointRadius: 0,
+                    pointHoverRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        min: 0,
+                        max: sharedYMax > 0 ? sharedYMax : 10,
+                        display: isLeftmost, 
+                        ticks: { color: '#bfdbfe', font: { size: 9 } }, 
+                        grid: { color: isLeftmost ? 'rgba(125, 211, 252, 0.08)' : 'transparent' },
+                        title: {
+                            display: isLeftmost,
+                            text: 'Precipitation (mm/day)',
+                            color: '#bfdbfe',
+                            font: { size: 10, weight: 'bold' }
+                        }
+                    },
+                    x: { 
+                        ticks: { color: '#bfdbfe', font: { size: 8 }, maxTicksLimit: 6 }, 
+                        grid: { color: 'rgba(125, 211, 252, 0.03)' },
+                        title: {
+                            display: true,
+                            text: 'Days',
+                            color: '#bfdbfe',
+                            font: { size: 10, weight: '600' }
+                        }
+                    }
+                }
+            }
+        });
+    });
+}
+
+function updateAllLineCharts() {
+    const totalDays = getDaysInMonth(currentMonth);
+    const dayLabels = Array.from({ length: totalDays }, (_, i) => (i + 1).toString());
+
+    let allGeneratedData = {};
+    let globalMax = 0;
+
+    targetRegions.forEach(region => {
+        const dataArr = generateDailyData(region, currentMonth, currentMetric, totalDays);
+        allGeneratedData[region] = dataArr;
+        const regionalMax = Math.max(...dataArr, 0);
+        if (regionalMax > globalMax) globalMax = regionalMax;
+    });
+
+    const sharedYMax = globalMax * 1.15;
+
+    targetRegions.forEach(region => {
+        const chart = chartInstances[region];
+        if (!chart) return;
+
+        chart.data.labels = dayLabels;
+        chart.data.datasets[0].data = allGeneratedData[region];
+        chart.options.scales.y.max = sharedYMax > 0 ? sharedYMax : 10;
+        chart.update('none'); 
+    });
+}
+
+// ── CONTROL EVENT LISTENERS ──
 const slider = document.getElementById('month-slider');
 const monthDisplay = document.getElementById('month-display');
 const metricSelect = document.getElementById('metric-select');
@@ -226,40 +348,45 @@ slider.addEventListener('input', function(e) {
     currentMonth = months[e.target.value];
     monthDisplay.textContent = currentMonth;
     updateMapLayer();
+    updateAllLineCharts();
 });
 
 metricSelect.addEventListener('change', function(e) {
     currentMetric = e.target.value;
     updateMapLayer();
+    updateAllLineCharts();
 });
 
-// App Startup Initializer with render-safeguard timeouts
 window.addEventListener('load', function() {
-    // Initial draw of the provinces
     updateMapLayer();
-    
-    // Force Leaflet to recalculate its container boundaries 
-    // right after the DOM settles to eliminate the grey block
-    setTimeout(function() {
-        map.invalidateSize();
-    }, 100);
-});
-// 11. Optional Scroll Nav Button Event Handlers
-document.getElementById("btn-next")?.addEventListener("click", () => {
-    const events = Object.keys(floodEvents);
-    let currentIndex = events.indexOf(activeEventKey);
-    let nextIndex = (currentIndex + 1) % events.length;
-    
-    // Find matching button element and click it
-    const nextKey = events[nextIndex];
-    document.querySelector(`[data-event="${nextKey}"]`)?.click();
+    initLineCharts();
+    setTimeout(() => map.invalidateSize(), 100);
 });
 
-document.getElementById("btn-back")?.addEventListener("click", () => {
-    const events = Object.keys(floodEvents);
-    let currentIndex = events.indexOf(activeEventKey);
-    let prevIndex = (currentIndex - 1 + events.length) % events.length;
-    
-    const prevKey = events[prevIndex];
-    document.querySelector(`[data-event="${prevKey}"]`)?.click();
-});
+// Intro Animation
+(function () {
+    const intro = document.getElementById("flood-intro");
+    if (!intro) return;
+
+    const eyebrow = intro.querySelector(".flood-eyebrow");
+    const line1 = document.getElementById("flood-line1");
+    const line2 = document.getElementById("flood-line2");
+    const body = document.getElementById("flood-body");
+    const cta = document.getElementById("flood-cta");
+
+    function show(el, delay) {
+        if (!el) return;
+        setTimeout(() => el.classList.add("flood-visible"), delay);
+    }
+
+    show(eyebrow, 400);
+    show(line1, 900);
+    show(line2, 1700);
+    show(body, 2700);
+    show(cta, 3500);
+
+    if (cta) cta.addEventListener("click", () => {
+        intro.classList.add("fade-out");
+        setTimeout(() => intro.classList.add("hidden"), 950);
+    });
+})();
