@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U.S. Monthly Precipitation Map - 2001 Tropical Storm Allison</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <div id="flood-intro">
+        <div id="flood-intro-inner">
+            <p class="flood-eyebrow">A Catastrophic Deluge</p>
+            
+            <h2 class="flood-headline" id="flood-line2">
+                This slow-moving storm dropped over <span class="flood-accent">40 inches of rain</span> in Texas, causing billions in damage and historic urban flooding.
+            </h2>
+            <button id="flood-cta">
+                Explore the map <span class="flood-arrow">→</span>
+            </button>
+        </div>
+    </div>
+    <header>
+        <div class="header-content">
+            <div class="eyebrow">Precipitation Data • Historical Torrential Floods • DSC 106</div>
+            <h1>Tropical Storm Allison: 2001</h1>
+        </div>
+    </header>
+
+    <div id="container">
+        <section class="viz-card">
+            <div class="dashboard-layout">
+                
+                <div id="map-wrapper">
+                    <div id="map"></div>
+                </div>
+                
+                <div id="controls" style="margin: 15px 0; padding: 10px 0;">
+                    <div class="slider-box">
+                        <div class="slider-label">Month: <span id="month-display" style="color: #3182ce; font-size: 18px;">June</span></div>
+                        <div class="slider-container">
+                            <span>Jan</span>
+                            <input type="range" id="month-slider" min="0" max="11" value="5">
+                            <span>Dec</span>
+                        </div>
+                    </div>
+                    <div class="metric-selector">
+                        <label for="metric-select">Visualization Metric: </label>
+                        <select id="metric-select">
+                            <option value="pr_sum" selected>Total Precipitation (pr_sum)</option>
+                            <option value="pr_mean">Mean Precipitation (pr_mean)</option>
+                            <option value="pr_max">Max Precipitation (pr_max)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="charts-grid">
+                    <div class="chart-card" id="card-texas">
+                        <h3>Texas State Trend</h3>
+                        <div class="chart-container-box">
+                            <canvas id="chart-texas"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card" id="card-louisiana">
+                        <h3>Louisiana State Trend</h3>
+                        <div class="chart-container-box">
+                            <canvas id="chart-louisiana"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card" id="card-pennsylvania">
+                        <h3>Pennsylvania State Trend</h3>
+                        <div class="chart-container-box">
+                            <canvas id="chart-pennsylvania"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <a href="../viz_3/index.html" id="btn-back" class="nav-scroll-btn">← Back</a>
+    <a href="../viz_4/index.html" id="btn-next" class="nav-scroll-btn">Next →</a>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="main.js"></script>
+</body>
+</html>
