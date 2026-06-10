@@ -51,18 +51,10 @@ header h1 {
     color: #ffffff;
 }
 
-.subtitle {
-    max-width: 900px;
-    margin: 0 auto;
-    font-size: 1.15rem;
-    color: #e0f2fe;
-}
-
 section {
     margin-bottom: 2rem;
 }
 
-.intro-card,
 .viz-card {
     background: #0f1f2e;
     border: 1px solid rgba(125, 211, 252, 0.18);
@@ -72,16 +64,7 @@ section {
     width: 100%;
 }
 
-.intro-card {
-    margin-top: 2.5rem; 
-}
-
-.section-heading p {
-    color: #bfdbfe;
-    margin-bottom: 20px;
-}
-
-/* ── STACKED DASHBOARD COMPONENT LAYOUT ── */
+/* ── DASHBOARD COMPONENT LAYOUT ── */
 .dashboard-layout {
     display: flex;
     flex-direction: column;
@@ -159,35 +142,56 @@ input[type=range]::-webkit-slider-thumb:hover {
     background: #0ea5e9;
 }
 
+/* ── SEGMENTED METRIC BUTTONS ── */
 .metric-selector {
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    margin-top: 15px;
-    align-items: center;
+    margin-top: 20px;
+    align-items: flex-start;
 }
 
 .metric-selector label {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: #f8fafc;
 }
 
-select {
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid rgba(125, 211, 252, 0.3);
-    background-color: #0f1f2e;
-    font-size: 14px;
-    color: #dbeafe;
-    outline: none;
-    cursor: pointer;
+.metric-buttons {
+    display: flex;
+    gap: 12px;
+    width: 100%;
 }
 
-select:focus {
+.metric-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    background-color: #0f1f2e;
+    font-size: 13px;
+    font-weight: 600;
+    color: #bfdbfe;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.metric-btn:hover {
+    background-color: #1e293b;
+    color: #ffffff;
     border-color: #38bdf8;
 }
 
-/* ── STICKY SQUISHED HORIZONTAL CHART ROW (NO OVERFLOW) ── */
+.metric-btn.active {
+    background-color: #38bdf8;
+    color: #07131f;
+    border-color: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+/* ── STICKY SQUISHED HORIZONTAL CHART ROW ── */
 .charts-grid {
     display: flex;
     flex-direction: row;
@@ -209,8 +213,8 @@ select:focus {
     flex-direction: column;
 }
 
-#card-hebei {
-    padding-left: 16px; /* Added padding space for y-axis title string bounds */
+#card-anhui {
+    padding-left: 16px;
 }
 
 .chart-card h3 {
@@ -229,7 +233,7 @@ select:focus {
     min-width: 0;
 }
 
-/* Leaflet Info Boxes */
+/* Leaflet Overlays */
 .info {
     padding: 12px 15px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -260,7 +264,7 @@ select:focus {
     border-radius: 4px;
 }
 
-/* Nav Buttons */
+/* Fixed Navigation Elements */
 .nav-scroll-btn {
     position: fixed;
     bottom: 24px;
@@ -288,7 +292,7 @@ select:focus {
     transform: translateY(-2px);
 }
 
-/* ── Flood Intro Animation System ── */
+/* Splash Intro Animation */
 #flood-intro {
     position: fixed;
     inset: 0;
@@ -340,16 +344,6 @@ select:focus {
 
 .flood-accent { color: #38bdf8; }
 
-.flood-body {
-    margin: 0 0 2.5rem;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.75;
-    color: #bae6fd;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
 #flood-cta {
     opacity: 0;
     transform: translateY(10px);
@@ -378,6 +372,7 @@ select:focus {
 #flood-cta:hover .flood-arrow { transform: translateX(4px); }
 .flood-visible { opacity: 1 !important; transform: translateY(0) !important; }
 
+<<<<<<< Updated upstream
 
 /* ── Left Sidebar Story Panel ── */
 .map-story-row {
@@ -591,7 +586,14 @@ select:focus {
     }
 }
 
+=======
+/* Viewport Adjustments */
+>>>>>>> Stashed changes
 @media (max-width: 768px) {
+    .metric-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
     .charts-grid {
         flex-direction: column;
     }
@@ -599,7 +601,7 @@ select:focus {
         height: 180px;
         padding-left: 12px;
     }
-    #card-hebei {
+    #card-anhui {
         padding-left: 12px;
     }
 }

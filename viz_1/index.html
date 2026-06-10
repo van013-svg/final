@@ -63,6 +63,14 @@
 
     <div id="container">
         <section class="viz-card">
+<<<<<<< Updated upstream
+=======
+            <div class="section-heading">
+                <!-- <h2>Yellow River Flood: 1887</h2> -->
+                <!-- <p>Click a target flood zone to focus on the affected geography. Use the month slider and selector to cycle data matrices.</p> -->
+            </div>
+
+>>>>>>> Stashed changes
             <div class="dashboard-layout">
 
                 <div class="map-story-row">
@@ -92,15 +100,32 @@
                         </p>
 
                         <div class="story-metric-grid">
+<<<<<<< Updated upstream
                             <div class="story-metric"><strong>tas_max</strong>: Near-surface max air temperature; historical baseline, not extreme modern warming.</div>
                             <div class="story-metric"><strong>pr_max</strong>: Heavy rainfall peaks that helped push the river beyond its controls.</div>
+=======
+                            <div class="story-metric"><strong>tas</strong>: Near-surface air temperature; historical
+                                baseline, not extreme modern warming.</div>
+                            <div class="story-metric"><strong>pr</strong>: Heavy rainfall helped push the river beyond
+                                its controls.</div>
+                            <div class="story-metric"><strong>mrro</strong>: Runoff spread across the flat North China
+                                Plain after the dike failure.</div>
+                            <div class="story-metric"><strong>prw</strong>: Atmospheric moisture was important, but not
+                                as amplified by modern warming.</div>
+>>>>>>> Stashed changes
                         </div>
 
                         <div class="story-region-notes">
                             <h3>Province notes</h3>
                             <ul>
+<<<<<<< Updated upstream
                                 <li><strong>Henan:</strong> Closest to the major breach area and central to the flood story.</li>
                                 <li><strong>Hubei:</strong> Shows broader baseline hydrological exposure across adjacent basins.</li>
+=======
+                                <li><strong>Henan:</strong> Closest to the major breach area and central to the flood
+                                    story.</li>
+                                <li><strong>Hebei:</strong> Shows broader North China Plain exposure.</li>
+>>>>>>> Stashed changes
                                 <li><strong>Shandong:</strong> Represents downstream lowland flood risk.</li>
                             </ul>
                         </div>
@@ -121,6 +146,7 @@
                         <button id="annotation-toggle" class="annotation-toggle" type="button">
                             Key pattern
                         </button>
+<<<<<<< Updated upstream
                     </div>
                 </div>
 
@@ -156,6 +182,44 @@
                     <h3>Hubei Province Trend</h3>
                     <div class="chart-container-box">
                         <canvas id="chart-hubei"></canvas>
+=======
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="controls">
+                <div class="slider-box">
+                    <div class="slider-label">Month: <span id="month-display"
+                            style="color: #3182ce; font-size: 18px;">January</span></div>
+                    <div class="slider-container">
+                        <span>Jan</span>
+                        <input type="range" id="month-slider" min="0" max="11" value="0">
+                        <span>Dec</span>
+                    </div>
+                </div>
+                <div class="metric-selector">
+                    <label for="metric-select">Visualization Metric: </label>
+                    <select id="metric-select">
+                        <option value="pr_sum" selected>Total Precipitation (pr_sum)</option>
+                        <option value="pr_mean">Mean Precipitation (pr_mean)</option>
+                        <option value="pr_max">Max Precipitation (pr_max)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card" id="card-hebei">
+                    <h3>Hebei Province Trend</h3>
+                    <div class="chart-container-box">
+                        <canvas id="chart-hebei"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-henan">
+                    <h3>Henan Province Trend</h3>
+                    <div class="chart-container-box">
+                        <canvas id="chart-henan"></canvas>
+>>>>>>> Stashed changes
                     </div>
                 </div>
                 <div class="chart-card" id="card-shandong">

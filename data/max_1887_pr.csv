@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 name,month,day,property_max
 Henan,April,16,5.930761e-05
 Henan,August,16,5.8328387e-05
@@ -11,6 +12,9 @@ Henan,May,16,6.585367e-05
 Henan,November,16,3.2164768e-05
 Henan,October,16,3.4831475e-05
 Henan,September,16,5.7529796e-05
+=======
+name,month,day,pr_max
+>>>>>>> Stashed changes
 Hubei,April,16,0.00011442936
 Hubei,August,16,5.3578016e-05
 Hubei,December,16,1.2131859e-05
@@ -23,6 +27,21 @@ Hubei,May,16,7.9214275e-05
 Hubei,November,16,3.398198e-05
 Hubei,October,16,3.477039e-05
 Hubei,September,16,0.000121047924
+<<<<<<< Updated upstream
+=======
+Hunan,April,16,0.00011390345
+Hunan,August,16,0.0001162339
+Hunan,December,16,1.1513806e-05
+Hunan,February,15,5.1553157e-05
+Hunan,January,16,2.7735501e-05
+Hunan,July,16,0.00011555148
+Hunan,June,16,9.7824326e-05
+Hunan,March,16,5.990365e-05
+Hunan,May,16,9.2038405e-05
+Hunan,November,16,3.283231e-05
+Hunan,October,16,2.2715982e-05
+Hunan,September,16,8.038677e-05
+>>>>>>> Stashed changes
 Shandong,April,16,1.8426306e-05
 Shandong,August,16,5.2147196e-05
 Shandong,December,16,9.168265e-06
