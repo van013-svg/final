@@ -1,58 +1,136 @@
 // main.js - Map Logic, Slider Controls & Synced Multi-Region Charts
 
-const precipitationData = [
-    {name:"Anhui",month:"April",pr_sum:100.871155,pr_mean:4.5850525,pr_max:10.453002},
-    {name:"Anhui",month:"August",pr_sum:75.83407,pr_mean:3.4470031,pr_max:7.280239},
-    {name:"Anhui",month:"December",pr_sum:11.997292,pr_mean:0.5453314,pr_max:1.3681773},
-    {name:"Anhui",month:"February",pr_sum:5.5650144,pr_mean:2.410557,pr_max:4.8872867},
-    {name:"Anhui",month:"January",pr_sum:9.599905,pr_mean:0.43635932,pr_max:0.9962103},
-    {name:"Anhui",month:"July",pr_sum:101.636955,pr_mean:4.6198616,pr_max:5.8446803},
-    {name:"Anhui",month:"June",pr_sum:73.09329,pr_mean:3.3224223,pr_max:5.055658},
-    {name:"Anhui",month:"March",pr_sum:81.03973,pr_mean:3.683624,pr_max:7.483668},
-    {name:"Anhui",month:"May",pr_sum:141.8596,pr_mean:6.448164,pr_max:11.957413},
-    {name:"Anhui",month:"November",pr_sum:58.333588,pr_mean:2.6515267,pr_max:4.167222},
-    {name:"Anhui",month:"October",pr_sum:42.838055,pr_mean:1.9471843,pr_max:3.017188},
-    {name:"Anhui",month:"September",pr_sum:11.398584,pr_mean:0.5181175,pr_max:1.1093187},
-    {name:"Hubei",month:"April",pr_sum:128.56174,pr_mean:4.5914907,pr_max:7.493876},
-    {name:"Hubei",month:"August",pr_sum:118.93836,pr_mean:4.2477984,pr_max:6.225026},
-    {name:"Hubei",month:"December",pr_sum:5.546491,pr_mean:0.19808897,pr_max:0.45209098},
-    {name:"Hubei",month:"February",pr_sum:74.4009,pr_mean:2.657175,pr_max:4.224004},
-    {name:"Hubei",month:"January",pr_sum:24.660147,pr_mean:0.88071954,pr_max:1.3418885},
-    {name:"Hubei",month:"July",pr_sum:73.344604,pr_mean:2.61945,pr_max:3.6133683},
-    {name:"Hubei",month:"June",pr_sum:74.492935,pr_mean:2.660462,pr_max:3.5925248},
-    {name:"Hubei",month:"March",pr_sum:113.9387,pr_mean:4.069239,pr_max:5.3464913},
-    {name:"Hubei",month:"May",pr_sum:265.4238,pr_mean:9.479422,pr_max:13.177361},
-    {name:"Hubei",month:"November",pr_sum:63.42099,pr_mean:2.2650354,pr_max:2.8556325},
-    {name:"Hubei",month:"October",pr_sum:74.69715,pr_mean:2.6677554,pr_max:3.6038175},
-    {name:"Hubei",month:"September",pr_sum:40.014973,pr_mean:1.4291061,pr_max:2.8929641},
-    {name:"Hunan",month:"April",pr_sum:241.80814,pr_mean:7.5565042,pr_max:9.935178},
-    {name:"Hunan",month:"August",pr_sum:125.35185,pr_mean:3.9172454,pr_max:8.862945},
-    {name:"Hunan",month:"December",pr_sum:31.114544,pr_mean:0.9723295,pr_max:1.7755153},
-    {name:"Hunan",month:"February",pr_sum:136.40224,pr_mean:4.26257,pr_max:4.8734455},
-    {name:"Hunan",month:"January",pr_sum:40.256016,pr_mean:1.2580005,pr_max:1.4526097},
-    {name:"Hunan",month:"July",pr_sum:73.49217,pr_mean:2.2966304,pr_max:3.619183},
-    {name:"Hunan",month:"June",pr_sum:135.5817,pr_mean:4.236928,pr_max:10.62516},
-    {name:"Hunan",month:"March",pr_sum:128.99612,pr_mean:4.031129,pr_max:5.0592003},
-    {name:"Hunan",month:"May",pr_sum:272.8097,pr_mean:8.525303,pr_max:14.795588},
-    {name:"Hunan",month:"November",pr_sum:84.042656,pr_mean:2.626333,pr_max:3.432719},
-    {name:"Hunan",month:"October",pr_sum:84.82446,pr_mean:2.6507645,pr_max:3.7512345},
-    {name:"Hunan",month:"September",pr_sum:33.760273,pr_mean:1.0550085,pr_max:1.4860456},
-    {name:"Jiangsu",month:"April",pr_sum:42.981064,pr_mean:2.6863165,pr_max:5.860438},
-    {name:"Jiangsu",month:"August",pr_sum:81.767426,pr_mean:5.110464,pr_max:7.4781613},
-    {name:"Jiangsu",month:"December",pr_sum:9.250931,pr_mean:0.5781832,pr_max:1.1816311},
-    {name:"Jiangsu",month:"February",pr_sum:27.832878,pr_mean:1.7395549,pr_max:3.9062247},
-    {name:"Jiangsu",month:"January",pr_sum:5.0821643,pr_mean:0.31763527,pr_max:0.66863793},
-    {name:"Jiangsu",month:"July",pr_sum:73.68251,pr_mean:4.605157,pr_max:5.8439436},
-    {name:"Jiangsu",month:"June",pr_sum:58.89453,pr_mean:3.6809082,pr_max:4.2385354},
-    {name:"Jiangsu",month:"March",pr_sum:44.85351,pr_mean:2.8033445,pr_max:5.253693},
-    {name:"Jiangsu",month:"May",pr_sum:55.85252,pr_mean:3.4907825,pr_max:7.960109},
-    {name:"Jiangsu",month:"November",pr_sum:42.665066,pr_mean:2.6665666,pr_max:4.4686823},
-    {name:"Jiangsu",month:"October",pr_sum:26.792295,pr_mean:1.6745185,pr_max:2.7719316},
-    {name:"Jiangsu",month:"September",pr_sum:12.126846,pr_mean:0.7579279,pr_max:1.6935483}
-];
+const DATA_FILE = "../data/df_1998.csv";
+let precipitationData = [];
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const regions = ["Anhui", "Hubei", "Hunan", "Jiangsu"];
+
+function parseCSV(text) {
+    const lines = text.trim().split(/\r?\n/);
+    const headers = lines[0].split(",").map(h => h.trim());
+
+    return lines.slice(1).map(line => {
+        const values = line.split(",");
+        const row = {};
+
+        headers.forEach((header, i) => {
+            const value = values[i]?.trim();
+            row[header] = isNaN(Number(value)) || value === "" ? value : Number(value);
+        });
+
+        return row;
+    });
+}
+
+function getFirstExisting(row, possibleNames) {
+    for (const name of possibleNames) {
+        if (row[name] !== undefined && row[name] !== "") {
+            return row[name];
+        }
+    }
+    return null;
+}
+
+function normalizeMonth(value) {
+    if (typeof value === "number") {
+        return months[value - 1];
+    }
+
+    const text = String(value).trim();
+
+    if (!isNaN(Number(text))) {
+        return months[Number(text) - 1];
+    }
+
+    const match = months.find(m => m.toLowerCase() === text.toLowerCase());
+    return match || text;
+}
+
+async function loadPrecipitationData(filePath, allowedRegions) {
+    const response = await fetch(filePath);
+
+    if (!response.ok) {
+        throw new Error(`Could not load ${filePath}`);
+    }
+
+    const text = await response.text();
+    const rows = parseCSV(text);
+
+    const firstRow = rows[0] || {};
+
+    const hasMonthlyAggregates =
+        firstRow.pr_sum !== undefined &&
+        firstRow.pr_mean !== undefined &&
+        firstRow.pr_max !== undefined;
+
+    if (hasMonthlyAggregates) {
+        return rows.map(row => {
+            const name = getFirstExisting(row, ["name", "Name", "province", "Province", "region", "Region"]);
+            const month = normalizeMonth(getFirstExisting(row, ["month", "Month"]));
+
+            return {
+                name,
+                month,
+                pr_sum: Number(row.pr_sum),
+                pr_mean: Number(row.pr_mean),
+                pr_max: Number(row.pr_max)
+            };
+        }).filter(row =>
+            row.name &&
+            row.month &&
+            allowedRegions.some(region => region.toLowerCase() === String(row.name).toLowerCase())
+        );
+    }
+
+    const grouped = {};
+
+    rows.forEach(row => {
+        const name = getFirstExisting(row, ["name", "Name", "province", "Province", "region", "Region"]);
+        const month = normalizeMonth(getFirstExisting(row, ["month", "Month"]));
+
+        const prValue = Number(getFirstExisting(row, [
+            "pr",
+            "precipitation",
+            "rain",
+            "rainfall",
+            "value",
+            "pr_max"
+        ]));
+
+        if (!name || !month || Number.isNaN(prValue)) return;
+
+        const matchedRegion = allowedRegions.find(
+            region => region.toLowerCase() === String(name).toLowerCase()
+        );
+
+        if (!matchedRegion) return;
+
+        const key = `${matchedRegion}-${month}`;
+
+        if (!grouped[key]) {
+            grouped[key] = {
+                name: matchedRegion,
+                month,
+                values: []
+            };
+        }
+
+        grouped[key].values.push(prValue);
+    });
+
+    return Object.values(grouped).map(group => {
+        const values = group.values;
+
+        return {
+            name: group.name,
+            month: group.month,
+            pr_sum: values.reduce((a, b) => a + b, 0),
+            pr_mean: values.reduce((a, b) => a + b, 0) / values.length,
+            pr_max: Math.max(...values)
+        };
+    });
+}
 
 const chinaProvincesGeoJSON = {
     "type": "FeatureCollection",
@@ -355,11 +433,14 @@ metricSelect.addEventListener('change', function(e) {
     updateAllLineCharts();
 });
 
-window.addEventListener('load', function() {
+window.addEventListener('load', async function() {
+    precipitationData = await loadPrecipitationData(DATA_FILE, regions);
+
     updateMapLayer();
     initLineCharts();
     setTimeout(() => map.invalidateSize(), 100);
 });
+
 /* ── Flood intro animation ── */
 (function () {
     const intro = document.getElementById("flood-intro");

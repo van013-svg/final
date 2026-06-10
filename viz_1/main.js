@@ -1,47 +1,137 @@
 // main.js - Map Logic, Shared Limits, & Horizontal Synced Controls
 
-const precipitationData = [
-    {name:"Hebei",month:"April",pr_sum:37.62973,pr_mean:1.1759291,pr_max:1.6820132},
-    {name:"Hebei",month:"August",pr_sum:178.77243,pr_mean:5.5866385,pr_max:7.716498},
-    {name:"Hebei",month:"December",pr_sum:1.7973366,pr_mean:0.056166768,pr_max:0.1692605},
-    {name:"Hebei",month:"February",pr_sum:4.5362053,pr_mean:0.14175642,pr_max:0.35838613},
-    {name:"Hebei",month:"January",pr_sum:1.7427415,pr_mean:0.05446067,pr_max:0.22623241},
-    {name:"Hebei",month:"July",pr_sum:120.3345,pr_mean:3.7604532,pr_max:7.720263},
-    {name:"Hebei",month:"June",pr_sum:125.604454,pr_mean:3.9251392,pr_max:4.9989433},
-    {name:"Hebei",month:"March",pr_sum:13.303282,pr_mean:0.41572756,pr_max:0.59623694},
-    {name:"Hebei",month:"May",pr_sum:44.201168,pr_mean:1.3812865,pr_max:2.37623},
-    {name:"Hebei",month:"November",pr_sum:32.050953,pr_mean:1.0015923,pr_max:2.747311},
-    {name:"Hebei",month:"October",pr_sum:17.256237,pr_mean:0.5392574,pr_max:0.88787067},
-    {name:"Hebei",month:"September",pr_sum:38.82139,pr_mean:1.2131684,pr_max:3.149966},
-    {name:"Henan",month:"April",pr_sum:79.915764,pr_mean:3.3298235,pr_max:5.1241775},
-    {name:"Henan",month:"August",pr_sum:66.21092,pr_mean:2.7587883,pr_max:5.0395727},
-    {name:"Henan",month:"December",pr_sum:19.18745,pr_mean:0.7994771,pr_max:1.1304765},
-    {name:"Henan",month:"February",pr_sum:23.109266,pr_mean:0.9628861,pr_max:1.9272546},
-    {name:"Henan",month:"January",pr_sum:16.094736,pr_mean:0.670614,pr_max:1.1504738},
-    {name:"Henan",month:"July",pr_sum:90.810974,pr_mean:3.7837906,pr_max:5.7379527},
-    {name:"Henan",month:"June",pr_sum:81.99419,pr_mean:3.4164245,pr_max:4.135277},
-    {name:"Henan",month:"March",pr_sum:60.25843,pr_mean:2.510768,pr_max:3.3890386},
-    {name:"Henan",month:"May",pr_sum:99.125725,pr_mean:4.1302385,pr_max:5.689757},
-    {name:"Henan",month:"November",pr_sum:54.43893,pr_mean:2.2682889,pr_max:2.7790358},
-    {name:"Henan",month:"October",pr_sum:57.246655,pr_mean:2.3852773,pr_max:3.0094395},
-    {name:"Henan",month:"September",pr_sum:35.911663,pr_mean:1.4963193,pr_max:4.9705744},
-    {name:"Shandong",month:"April",pr_sum:28.752478,pr_mean:1.1058645,pr_max:2.2174764},
-    {name:"Shandong",month:"August",pr_sum:79.868645,pr_mean:3.071871,pr_max:4.5055175},
-    {name:"Shandong",month:"December",pr_sum:10.40455,pr_mean:0.40017498,pr_max:0.9607381},
-    {name:"Shandong",month:"February",pr_sum:5.5650144,pr_mean:0.21403901,pr_max:0.8286908},
-    {name:"Shandong",month:"January",pr_sum:13.685696,pr_mean:0.5263729,pr_max:0.867823},
-    {name:"Shandong",month:"July",pr_sum:128.97125,pr_mean:4.960433,pr_max:7.9550753},
-    {name:"Shandong",month:"June",pr_sum:119.89764,pr_mean:4.6114473,pr_max:6.229517},
-    {name:"Shandong",month:"March",pr_sum:28.191977,pr_mean:1.0843068,pr_max:1.781577},
-    {name:"Shandong",month:"May",pr_sum:60.642136,pr_mean:2.3323898,pr_max:4.3422184},
-    {name:"Shandong",month:"November",pr_sum:58.03797,pr_mean:2.2322297,pr_max:3.1168227},
-    {name:"Shandong",month:"October",pr_sum:39.351383,pr_mean:1.5135148,pr_max:1.987463},
-    {name:"Shandong",month:"September",pr_sum:7.538385,pr_mean:0.28993788,pr_max:1.1736186}
-];
+const DATA_FILE = "../data/df_1887.csv";
+let precipitationData = [];
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const targetRegions = ["Hebei", "Henan", "Shandong"];
 let chartInstances = {};
+
+function parseCSV(text) {
+    const lines = text.trim().split(/\r?\n/);
+    const headers = lines[0].split(",").map(h => h.trim());
+
+    return lines.slice(1).map(line => {
+        const values = line.split(",");
+        const row = {};
+
+        headers.forEach((header, i) => {
+            const value = values[i]?.trim();
+            row[header] = isNaN(Number(value)) || value === "" ? value : Number(value);
+        });
+
+        return row;
+    });
+}
+
+function getFirstExisting(row, possibleNames) {
+    for (const name of possibleNames) {
+        if (row[name] !== undefined && row[name] !== "") {
+            return row[name];
+        }
+    }
+    return null;
+}
+
+function normalizeMonth(value) {
+    if (typeof value === "number") {
+        return months[value - 1];
+    }
+
+    const text = String(value).trim();
+
+    if (!isNaN(Number(text))) {
+        return months[Number(text) - 1];
+    }
+
+    const match = months.find(m => m.toLowerCase() === text.toLowerCase());
+    return match || text;
+}
+
+async function loadPrecipitationData(filePath, allowedRegions) {
+    const response = await fetch(filePath);
+
+    if (!response.ok) {
+        throw new Error(`Could not load ${filePath}`);
+    }
+
+    const text = await response.text();
+    const rows = parseCSV(text);
+
+    const firstRow = rows[0] || {};
+
+    const hasMonthlyAggregates =
+        firstRow.pr_sum !== undefined &&
+        firstRow.pr_mean !== undefined &&
+        firstRow.pr_max !== undefined;
+
+    if (hasMonthlyAggregates) {
+        return rows.map(row => {
+            const name = getFirstExisting(row, ["name", "Name", "province", "Province", "region", "Region"]);
+            const month = normalizeMonth(getFirstExisting(row, ["month", "Month"]));
+
+            return {
+                name,
+                month,
+                pr_sum: Number(row.pr_sum),
+                pr_mean: Number(row.pr_mean),
+                pr_max: Number(row.pr_max)
+            };
+        }).filter(row =>
+            row.name &&
+            row.month &&
+            allowedRegions.some(region => region.toLowerCase() === String(row.name).toLowerCase())
+        );
+    }
+
+    const grouped = {};
+
+    rows.forEach(row => {
+        const name = getFirstExisting(row, ["name", "Name", "province", "Province", "region", "Region"]);
+        const month = normalizeMonth(getFirstExisting(row, ["month", "Month"]));
+
+        const prValue = Number(getFirstExisting(row, [
+            "pr",
+            "precipitation",
+            "rain",
+            "rainfall",
+            "value",
+            "pr_max"
+        ]));
+
+        if (!name || !month || Number.isNaN(prValue)) return;
+
+        const matchedRegion = allowedRegions.find(
+            region => region.toLowerCase() === String(name).toLowerCase()
+        );
+
+        if (!matchedRegion) return;
+
+        const key = `${matchedRegion}-${month}`;
+
+        if (!grouped[key]) {
+            grouped[key] = {
+                name: matchedRegion,
+                month,
+                values: []
+            };
+        }
+
+        grouped[key].values.push(prValue);
+    });
+
+    return Object.values(grouped).map(group => {
+        const values = group.values;
+
+        return {
+            name: group.name,
+            month: group.month,
+            pr_sum: values.reduce((a, b) => a + b, 0),
+            pr_mean: values.reduce((a, b) => a + b, 0) / values.length,
+            pr_max: Math.max(...values)
+        };
+    });
+}
 
 const chinaProvincesGeoJSON = {
     "type": "FeatureCollection",
@@ -357,7 +447,9 @@ metricSelect.addEventListener('change', function(e) {
     updateAllLineCharts();
 });
 
-window.addEventListener('load', function() {
+window.addEventListener('load', async function() {
+    precipitationData = await loadPrecipitationData(DATA_FILE, targetRegions);
+
     updateMapLayer();
     initLineCharts();
     setTimeout(() => map.invalidateSize(), 100);
