@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css - Comprehensive Horizontal Layout Rules */
 * {
     box-sizing: border-box;
 }
@@ -10,15 +10,16 @@ body {
     color: #dbeafe;
     line-height: 1.6;
 }
+
 #container {
     max-width: 1100px;
     margin: 20px auto;
-    /* Changed padding to 20px on top/bottom and 30px on left/right */
     padding: 20px 30px; 
     background: #0f1f2e;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
+
 header {
     background:
         radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.36), transparent 28%),
@@ -32,7 +33,6 @@ header {
 .header-content {
     max-width: 1000px;
     margin: 0 auto;
-    
 }
 
 .eyebrow {
@@ -58,11 +58,6 @@ header h1 {
     color: #e0f2fe;
 }
 
-main {
-    width: min(1120px, 92%);
-    margin: 2rem auto 4rem;
-}
-
 section {
     margin-bottom: 2rem;
 }
@@ -74,34 +69,45 @@ section {
     border-radius: 18px;
     padding: 1.6rem;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+    width: 100%;
 }
 
-.intro-card h2,
-.viz-card h2 {
-    color: #f8fafc;
-    margin-top: 0;
-    font-size: 24px;
-}
 .intro-card {
-    background: #0f1f2e;
-    border: 1px solid rgba(125, 211, 252, 0.18);
-    border-radius: 18px;
-    padding: 1.6rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
-    /* Adds the spacing gap above the project overview card */
     margin-top: 2.5rem; 
 }
+
 .section-heading p {
     color: #bfdbfe;
     margin-bottom: 20px;
+}
+
+/* ── STACKED DASHBOARD COMPONENT LAYOUT ── */
+.dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+#map-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(125, 211, 252, 0.2);
+    background: #07131f;
 }
 
 #controls {
     background: rgba(7, 19, 31, 0.6);
     padding: 15px 20px;
     border-radius: 8px;
-    margin-bottom: 20px;
     border: 1px solid rgba(125, 211, 252, 0.15);
+    width: 100%;
 }
 
 .slider-box {
@@ -116,12 +122,6 @@ section {
     font-size: 16px;
     color: #f8fafc;
     min-width: 140px;
-}
-
-#monthLabel {
-    color: #38bdf8;
-    font-size: 18px;
-    font-weight: bold;
 }
 
 .slider-container {
@@ -184,19 +184,49 @@ select:focus {
     border-color: #38bdf8;
 }
 
-#map-wrapper {
-    position: relative;
-}
-
-#map {
-    height: 550px;
+/* ── STICKY SQUISHED HORIZONTAL CHART ROW (NO OVERFLOW) ── */
+.charts-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; 
+    gap: 12px;
     width: 100%;
-    border-radius: 12px;
-    border: 1px solid rgba(125, 211, 252, 0.2);
-    background: #07131f;
+    box-sizing: border-box;
 }
 
-/* Leaflet Info/Legend Overrides to match the dark aesthetic */
+.chart-card {
+    flex: 1;
+    min-width: 0; 
+    background: rgba(7, 19, 31, 0.5);
+    border: 1px solid rgba(125, 211, 252, 0.15);
+    border-radius: 12px;
+    padding: 10px 12px 6px 12px;
+    height: 215px; 
+    display: flex;
+    flex-direction: column;
+}
+
+#card-hebei {
+    padding-left: 16px; /* Added padding space for y-axis title string bounds */
+}
+
+.chart-card h3 {
+    margin: 0 0 6px 0;
+    color: #f8fafc;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.chart-container-box {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+}
+
+/* Leaflet Info Boxes */
 .info {
     padding: 12px 15px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -226,7 +256,8 @@ select:focus {
     opacity: 0.85;
     border-radius: 4px;
 }
-/* Pinned Scroll Navigation Links */
+
+/* Nav Buttons */
 .nav-scroll-btn {
     position: fixed;
     bottom: 24px;
@@ -237,35 +268,24 @@ select:focus {
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
-    text-decoration: none; /* FIX: Removes the default link underline styling */
+    text-decoration: none;
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
-    z-index: 2000; /* Keeps buttons safely positioned above Leaflet map container layers */
+    z-index: 2000;
 }
 
-/* Position individual links into their respective screen corners */
-#btn-back {
-    left: 24px;
-}
+#btn-back { left: 24px; }
+#btn-next { right: 24px; }
 
-#btn-next {
-    right: 24px;
-}
-
-/* Interactive Hover States */
 .nav-scroll-btn:hover {
     background: #1e293b;
     border-color: #38bdf8;
     color: #ffffff;
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
     transform: translateY(-2px);
 }
 
-.nav-scroll-btn:active {
-    transform: translateY(0);
-}
-/* ── Flood intro overlay ── */
+/* ── Flood Intro Animation System ── */
 #flood-intro {
     position: fixed;
     inset: 0;
@@ -291,6 +311,7 @@ select:focus {
 #flood-intro-inner {
     max-width: 760px;
 }
+
 .flood-eyebrow {
     margin: 0 0 1.5rem;
     font-size: 0.8rem;
@@ -314,9 +335,8 @@ select:focus {
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.flood-accent {
-    color: #38bdf8;
-}
+.flood-accent { color: #38bdf8; }
+
 .flood-body {
     margin: 0 0 2.5rem;
     font-size: clamp(1rem, 2vw, 1.2rem);
@@ -340,6 +360,7 @@ select:focus {
     cursor: pointer;
     letter-spacing: 0.04em;
 }
+
 #flood-cta:hover {
     background: rgba(56, 189, 248, 0.15);
     color: #f0f9ff;
@@ -351,76 +372,19 @@ select:focus {
     transition: transform 0.2s ease;
 }
 
-#flood-cta:hover .flood-arrow {
-    transform: translateX(4px);
-}
+#flood-cta:hover .flood-arrow { transform: translateX(4px); }
+.flood-visible { opacity: 1 !important; transform: translateY(0) !important; }
 
-.flood-visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-/* ── End flood intro overlay ── */
-/* ── FIXED HORIZONTAL PLOTS WITH ZERO SIDE-SCROLLING ── */
-.dashboard-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    width: 100%;
-}
-
-/* Forces the grid container to match the parent container exactly */
-.charts-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; /* Prevents wrapping and forces them on one line */
-    gap: 12px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-/* Update the chart card properties to handle the new axis titles gracefully */
-.chart-card {
-    flex: 1;
-    min-width: 0;
-    background: rgba(7, 19, 31, 0.5);
-    border: 1px solid rgba(125, 211, 252, 0.15);
-    border-radius: 12px;
-    padding: 10px 12px 6px 12px; /* Slight padding tweak for labels */
-    height: 215px; /* Slightly taller to give the "Days" labels breathing room */
-    display: flex;
-    flex-direction: column;
-    transition: border-color 0.25s ease-in-out;
-}
-
-/* Give the leftmost card slightly more left padding for the Y-axis label */
-#card-anhui {
-    padding-left: 16px;
-}
-
-.chart-card h3 {
-    margin: 0 0 6px 0;
-    color: #f8fafc;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: center;
-    letter-spacing: 0.02em;
-}
-
-.chart-container-box {
-    flex: 1;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-}
-
-/* Responsive adjustment: only stacks on small tablet/mobile screens */
+/* Responsive Wrap Breakpoints */
 @media (max-width: 768px) {
     .charts-grid {
         flex-direction: column;
     }
     .chart-card {
         height: 180px;
+        padding-left: 12px;
+    }
+    #card-hebei {
+        padding-left: 12px;
     }
 }
