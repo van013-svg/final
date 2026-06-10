@@ -394,11 +394,8 @@ window.addEventListener('load', function() {
     });
 })();
 
-<<<<<<< Updated upstream
 // Timed annotation handling
-=======
 // Timed annotation: show for 10 seconds, then fade into a button
->>>>>>> Stashed changes
 document.addEventListener("DOMContentLoaded", () => {
   const annotation = document.getElementById("map-annotation");
   const toggleButton = document.getElementById("annotation-toggle");
@@ -413,17 +410,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function showAnnotation() {
     annotation.classList.remove("is-hidden");
     toggleButton.classList.remove("is-visible");
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     setTimeout(hideAnnotation, 10000);
   }
 
   setTimeout(hideAnnotation, 10000);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
   toggleButton.addEventListener("click", showAnnotation);
 });
