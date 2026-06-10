@@ -10,16 +10,15 @@ body {
     color: #dbeafe;
     line-height: 1.6;
 }
-
 #container {
     max-width: 1100px;
     margin: 20px auto;
+    /* Changed padding to 20px on top/bottom and 30px on left/right */
     padding: 20px 30px; 
     background: #0f1f2e;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
-
 header {
     background:
         radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.36), transparent 28%),
@@ -33,6 +32,7 @@ header {
 .header-content {
     max-width: 1000px;
     margin: 0 auto;
+    
 }
 
 .eyebrow {
@@ -82,49 +82,40 @@ section {
     margin-top: 0;
     font-size: 24px;
 }
-
 .intro-card {
     background: #0f1f2e;
     border: 1px solid rgba(125, 211, 252, 0.18);
     border-radius: 18px;
     padding: 1.6rem;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+    /* Adds the spacing gap above the project overview card */
     margin-top: 2.5rem; 
 }
-
 .section-heading p {
     color: #bfdbfe;
     margin-bottom: 20px;
 }
 
-/* ── BULLETPROOF CONTROLS PANEL ── */
 #controls {
     background: rgba(7, 19, 31, 0.6);
-    padding: 20px;
+    padding: 15px 20px;
     border-radius: 8px;
     margin-bottom: 20px;
     border: 1px solid rgba(125, 211, 252, 0.15);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .slider-box {
-    display: grid;
-    grid-template-columns: auto 1fr; 
+    display: flex;
     align-items: center;
-    gap: 24px;
-    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .slider-label {
     font-weight: 600;
     font-size: 16px;
     color: #f8fafc;
-    white-space: nowrap;
-    min-width: 160px;
+    min-width: 140px;
 }
 
 #monthLabel {
@@ -134,29 +125,21 @@ section {
 }
 
 .slider-container {
-    display: grid;
-    grid-template-columns: auto 1fr auto; 
+    flex-grow: 1;
+    display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     color: #bfdbfe;
-    width: 100%;
-}
-
-.slider-container span {
-    font-size: 14px;
-    white-space: nowrap;
-    flex-shrink: 0;
 }
 
 input[type=range] {
-    width: 100%;
+    flex-grow: 1;
     height: 8px;
     border-radius: 5px;
     background: #1e293b;
     outline: none;
     -webkit-appearance: none;
     cursor: pointer;
-    display: block;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -175,16 +158,15 @@ input[type=range]::-webkit-slider-thumb:hover {
 
 .metric-selector {
     display: flex;
-    gap: 15px;
+    gap: 10px;
+    margin-top: 15px;
     align-items: center;
-    width: 100%;
 }
 
 .metric-selector label {
     font-size: 14px;
     font-weight: 500;
     color: #f8fafc;
-    flex-shrink: 0;
 }
 
 select {
@@ -214,7 +196,7 @@ select:focus {
     background: #07131f;
 }
 
-/* Leaflet Info/Legend Overrides */
+/* Leaflet Info/Legend Overrides to match the dark aesthetic */
 .info {
     padding: 12px 15px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -244,7 +226,6 @@ select:focus {
     opacity: 0.85;
     border-radius: 4px;
 }
-
 /* Pinned Scroll Navigation Links */
 .nav-scroll-btn {
     position: fixed;
@@ -256,13 +237,14 @@ select:focus {
     border-radius: 8px;
     font-weight: 600;
     font-size: 14px;
-    text-decoration: none; 
+    text-decoration: none; /* FIX: Removes the default link underline styling */
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
-    z-index: 2000; 
+    z-index: 2000; /* Keeps buttons safely positioned above Leaflet map container layers */
 }
 
+/* Position individual links into their respective screen corners */
 #btn-back {
     left: 24px;
 }
@@ -271,6 +253,7 @@ select:focus {
     right: 24px;
 }
 
+/* Interactive Hover States */
 .nav-scroll-btn:hover {
     background: #1e293b;
     border-color: #38bdf8;
@@ -282,7 +265,6 @@ select:focus {
 .nav-scroll-btn:active {
     transform: translateY(0);
 }
-
 /* ── Flood intro overlay ── */
 #flood-intro {
     position: fixed;
@@ -309,7 +291,6 @@ select:focus {
 #flood-intro-inner {
     max-width: 760px;
 }
-
 .flood-eyebrow {
     margin: 0 0 1.5rem;
     font-size: 0.8rem;
@@ -336,7 +317,6 @@ select:focus {
 .flood-accent {
     color: #38bdf8;
 }
-
 .flood-body {
     margin: 0 0 2.5rem;
     font-size: clamp(1rem, 2vw, 1.2rem);
@@ -360,7 +340,6 @@ select:focus {
     cursor: pointer;
     letter-spacing: 0.04em;
 }
-
 #flood-cta:hover {
     background: rgba(56, 189, 248, 0.15);
     color: #f0f9ff;
@@ -380,7 +359,7 @@ select:focus {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
-
+/* ── End flood intro overlay ── */
 /* ── FIXED HORIZONTAL PLOTS WITH ZERO SIDE-SCROLLING ── */
 .dashboard-layout {
     display: flex;
@@ -389,30 +368,33 @@ select:focus {
     width: 100%;
 }
 
+/* Forces the grid container to match the parent container exactly */
 .charts-grid {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap; /* Prevents wrapping and forces them on one line */
     gap: 12px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
 }
 
+/* Update the chart card properties to handle the new axis titles gracefully */
 .chart-card {
     flex: 1;
     min-width: 0;
     background: rgba(7, 19, 31, 0.5);
     border: 1px solid rgba(125, 211, 252, 0.15);
     border-radius: 12px;
-    padding: 10px 12px 6px 12px; 
-    height: 215px; 
+    padding: 10px 12px 6px 12px; /* Slight padding tweak for labels */
+    height: 215px; /* Slightly taller to give the "Days" labels breathing room */
     display: flex;
     flex-direction: column;
     transition: border-color 0.25s ease-in-out;
 }
 
-#card-anhui, #card-kpk {
+/* Give the leftmost card slightly more left padding for the Y-axis label */
+#card-anhui {
     padding-left: 16px;
 }
 
@@ -433,19 +415,13 @@ select:focus {
     min-width: 0;
 }
 
+/* Responsive adjustment: only stacks on small tablet/mobile screens */
 @media (max-width: 768px) {
     .charts-grid {
         flex-direction: column;
     }
     .chart-card {
         height: 180px;
-    }
-    .slider-box {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    .slider-label {
-        min-width: 0;
     }
 }
 

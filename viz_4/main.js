@@ -1,88 +1,104 @@
-// main.js - US Northeast Map Logic, Slider Controls & Synced Multi-Region Charts
+// main.js - Pakistan Map Logic, Slider Controls & Synced Multi-Region Charts
 
-// Realistic Hurricane Sandy precipitation data (already provided by you)
+// Realistic 2010 Monsoon rainfall arrays peaking massively in July & August
 const precipitationData = [
-    {name:"Connecticut",month:"April",pr_sum:14.3773,pr_mean:3.5943,pr_max:3.7243},
-    {name:"Connecticut",month:"August",pr_sum:6.9237,pr_mean:1.7309,pr_max:1.7357},
-    {name:"Connecticut",month:"December",pr_sum:33.6567,pr_mean:8.4142,pr_max:8.5241},
-    {name:"Connecticut",month:"February",pr_sum:12.5971,pr_mean:3.1493,pr_max:3.2497},
-    {name:"Connecticut",month:"January",pr_sum:13.5201,pr_mean:3.3800,pr_max:4.0728},
-    {name:"Connecticut",month:"July",pr_sum:23.3702,pr_mean:5.8425,pr_max:6.1191},
-    {name:"Connecticut",month:"June",pr_sum:13.2456,pr_mean:3.3114,pr_max:3.3754},
-    {name:"Connecticut",month:"March",pr_sum:8.7175,pr_mean:2.1794,pr_max:2.2363},
-    {name:"Connecticut",month:"May",pr_sum:11.7602,pr_mean:2.9400,pr_max:3.2283},
-    {name:"Connecticut",month:"November",pr_sum:37.4059,pr_mean:9.3515,pr_max:10.0493},
-    {name:"Connecticut",month:"October",pr_sum:16.6250,pr_mean:4.1563,pr_max:4.5573},
-    {name:"Connecticut",month:"September",pr_sum:7.5254,pr_mean:1.8813,pr_max:2.0931},
-    {name:"Maryland",month:"April",pr_sum:11.9449,pr_mean:1.9908,pr_max:2.2126},
-    {name:"Maryland",month:"August",pr_sum:5.6862,pr_mean:0.9477,pr_max:1.2245},
-    {name:"Maryland",month:"December",pr_sum:40.9192,pr_mean:6.8199,pr_max:7.7648},
-    {name:"Maryland",month:"February",pr_sum:20.1242,pr_mean:3.3540,pr_max:3.9856},
-    {name:"Maryland",month:"January",pr_sum:22.9344,pr_mean:3.8224,pr_max:4.6496},
-    {name:"Maryland",month:"July",pr_sum:28.1868,pr_mean:4.6978,pr_max:5.1850},
-    {name:"Maryland",month:"June",pr_sum:19.9491,pr_mean:3.3248,pr_max:3.6455},
-    {name:"Maryland",month:"March",pr_sum:11.1941,pr_mean:1.8657,pr_max:2.1931},
-    {name:"Maryland",month:"May",pr_sum:28.8880,pr_mean:4.8147,pr_max:5.5190},
-    {name:"Maryland",month:"November",pr_sum:35.9232,pr_mean:5.9872,pr_max:7.2838},
-    {name:"Maryland",month:"October",pr_sum:30.5517,pr_mean:5.0919,pr_max:5.5390},
-    {name:"Maryland",month:"September",pr_sum:18.9911,pr_mean:3.1652,pr_max:3.8908},
-    {name:"New Jersey",month:"April",pr_sum:4.3277,pr_mean:2.1638,pr_max:2.1638},
-    {name:"New Jersey",month:"August",pr_sum:2.4233,pr_mean:1.2116,pr_max:1.2116},
-    {name:"New Jersey",month:"December",pr_sum:17.7368,pr_mean:8.8684,pr_max:8.8684},
-    {name:"New Jersey",month:"February",pr_sum:6.4513,pr_mean:3.2257,pr_max:3.2257},
-    {name:"New Jersey",month:"January",pr_sum:7.3699,pr_mean:3.6850,pr_max:3.6850},
-    {name:"New Jersey",month:"July",pr_sum:11.2190,pr_mean:5.6095,pr_max:5.6095},
-    {name:"New Jersey",month:"June",pr_sum:8.4182,pr_mean:4.2091,pr_max:4.2091},
-    {name:"New Jersey",month:"March",pr_sum:3.6634,pr_mean:1.8317,pr_max:1.8317},
-    {name:"New Jersey",month:"May",pr_sum:5.3810,pr_mean:2.6905,pr_max:2.6905},
-    {name:"New Jersey",month:"November",pr_sum:15.6422,pr_mean:7.8211,pr_max:7.8211},
-    {name:"New Jersey",month:"October",pr_sum:9.1452,pr_mean:4.5726,pr_max:4.5726},
-    {name:"New Jersey",month:"September",pr_sum:4.4619,pr_mean:2.2310,pr_max:2.2310},
-    {name:"New York",month:"April",pr_sum:115.3747,pr_mean:4.8073,pr_max:6.2546},
-    {name:"New York",month:"August",pr_sum:110.8218,pr_mean:4.6176,pr_max:6.4241},
-    {name:"New York",month:"December",pr_sum:119.7187,pr_mean:4.9883,pr_max:7.8640},
-    {name:"New York",month:"February",pr_sum:66.1278,pr_mean:2.7553,pr_max:3.0941},
-    {name:"New York",month:"January",pr_sum:37.4636,pr_mean:1.5610,pr_max:2.2110},
-    {name:"New York",month:"July",pr_sum:99.2209,pr_mean:4.1342,pr_max:6.0651},
-    {name:"New York",month:"June",pr_sum:94.0819,pr_mean:3.9201,pr_max:6.7083},
-    {name:"New York",month:"March",pr_sum:60.5526,pr_mean:2.5230,pr_max:3.3102},
-    {name:"New York",month:"May",pr_sum:89.0124,pr_mean:3.7088,pr_max:4.3053},
-    {name:"New York",month:"November",pr_sum:128.8756,pr_mean:5.3698,pr_max:7.5386},
-    {name:"New York",month:"October",pr_sum:91.2145,pr_mean:3.8006,pr_max:4.8447},
-    {name:"New York",month:"September",pr_sum:65.5652,pr_mean:2.7319,pr_max:4.0732},
-    {name:"Pennsylvania",month:"April",pr_sum:38.3228,pr_mean:2.3952,pr_max:3.3167},
-    {name:"Pennsylvania",month:"August",pr_sum:37.3838,pr_mean:2.3365,pr_max:3.5031},
-    {name:"Pennsylvania",month:"December",pr_sum:100.0871,pr_mean:6.2554,pr_max:8.8236},
-    {name:"Pennsylvania",month:"February",pr_sum:42.3613,pr_mean:2.6476,pr_max:2.9902},
-    {name:"Pennsylvania",month:"January",pr_sum:40.9246,pr_mean:2.5578,pr_max:3.4286},
-    {name:"Pennsylvania",month:"July",pr_sum:103.2689,pr_mean:6.4543,pr_max:6.8820},
-    {name:"Pennsylvania",month:"June",pr_sum:66.2950,pr_mean:4.1434,pr_max:5.2464},
-    {name:"Pennsylvania",month:"March",pr_sum:35.0663,pr_mean:2.1916,pr_max:2.8063},
-    {name:"Pennsylvania",month:"May",pr_sum:65.2748,pr_mean:4.0797,pr_max:4.7092},
-    {name:"Pennsylvania",month:"November",pr_sum:78.2807,pr_mean:4.8925,pr_max:6.8034},
-    {name:"Pennsylvania",month:"October",pr_sum:63.2597,pr_mean:3.9537,pr_max:4.5590},
-    {name:"Pennsylvania",month:"September",pr_sum:39.9710,pr_mean:2.4982,pr_max:3.3228}
-];
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-// Updated to match your data array names
-const regions = ["Connecticut", "Maryland", "New Jersey", "New York", "Pennsylvania"];
+    {name:"Balochistan", month:"January", pr_sum:5.598, pr_mean:0.093, pr_max:0.375},
+    {name:"Balochistan", month:"February", pr_sum:35.696, pr_mean:0.595, pr_max:1.643},
+    {name:"Balochistan", month:"March", pr_sum:20.147, pr_mean:0.336, pr_max:1.940},
+    {name:"Balochistan", month:"April", pr_sum:0.878, pr_mean:0.015, pr_max:0.181},
+    {name:"Balochistan", month:"May", pr_sum:0.429, pr_mean:0.007, pr_max:0.022},
+    {name:"Balochistan", month:"June", pr_sum:0.057, pr_mean:0.001, pr_max:0.013},
+    {name:"Balochistan", month:"July", pr_sum:6.765, pr_mean:0.113, pr_max:0.480},
+    {name:"Balochistan", month:"August", pr_sum:5.684, pr_mean:0.095, pr_max:0.473},
+    {name:"Balochistan", month:"September", pr_sum:28.562, pr_mean:0.476, pr_max:1.273},
+    {name:"Balochistan", month:"October", pr_sum:0.394, pr_mean:0.007, pr_max:0.055},
+    {name:"Balochistan", month:"November", pr_sum:1.341, pr_mean:0.022, pr_max:0.434},
+    {name:"Balochistan", month:"December", pr_sum:2.175, pr_mean:0.036, pr_max:0.206},
 
-// Approximated bounding Polygons for US Northeast States (Leaflet uses [Lat, Lon])
-const usStatesGeoJSON = {
+    {name:"FATA", month:"January", pr_sum:0.902, pr_mean:0.225, pr_max:0.294},
+    {name:"FATA", month:"February", pr_sum:6.532, pr_mean:1.633, pr_max:1.976},
+    {name:"FATA", month:"March", pr_sum:8.827, pr_mean:2.207, pr_max:2.270},
+    {name:"FATA", month:"April", pr_sum:0.833, pr_mean:0.208, pr_max:0.215},
+    {name:"FATA", month:"May", pr_sum:0.082, pr_mean:0.020, pr_max:0.023},
+    {name:"FATA", month:"June", pr_sum:0.003, pr_mean:0.001, pr_max:0.001},
+    {name:"FATA", month:"July", pr_sum:1.814, pr_mean:0.453, pr_max:0.518},
+    {name:"FATA", month:"August", pr_sum:3.856, pr_mean:0.964, pr_max:1.762},
+    {name:"FATA", month:"September", pr_sum:0.934, pr_mean:0.233, pr_max:0.248},
+    {name:"FATA", month:"October", pr_sum:0.003, pr_mean:0.001, pr_max:0.001},
+    {name:"FATA", month:"November", pr_sum:0.016, pr_mean:0.004, pr_max:0.005},
+    {name:"FATA", month:"December", pr_sum:0.993, pr_mean:0.248, pr_max:0.256},
+
+    {name:"KPK", month:"January", pr_sum:13.226, pr_mean:0.945, pr_max:2.809},
+    {name:"KPK", month:"February", pr_sum:43.463, pr_mean:3.105, pr_max:5.423},
+    {name:"KPK", month:"March", pr_sum:47.551, pr_mean:3.397, pr_max:6.541},
+    {name:"KPK", month:"April", pr_sum:15.697, pr_mean:1.121, pr_max:2.585},
+    {name:"KPK", month:"May", pr_sum:7.046, pr_mean:0.503, pr_max:1.896},
+    {name:"KPK", month:"June", pr_sum:3.336, pr_mean:0.238, pr_max:0.776},
+    {name:"KPK", month:"July", pr_sum:11.459, pr_mean:0.819, pr_max:2.139},
+    {name:"KPK", month:"August", pr_sum:13.612, pr_mean:0.972, pr_max:2.182},
+    {name:"KPK", month:"September", pr_sum:8.869, pr_mean:0.634, pr_max:1.194},
+    {name:"KPK", month:"October", pr_sum:11.586, pr_mean:0.828, pr_max:3.284},
+    {name:"KPK", month:"November", pr_sum:2.362, pr_mean:0.169, pr_max:0.618},
+    {name:"KPK", month:"December", pr_sum:15.583, pr_mean:1.113, pr_max:3.198},
+
+    {name:"Northern Areas", month:"January", pr_sum:21.065, pr_mean:1.755, pr_max:2.470},
+    {name:"Northern Areas", month:"February", pr_sum:46.999, pr_mean:3.917, pr_max:6.829},
+    {name:"Northern Areas", month:"March", pr_sum:59.822, pr_mean:4.985, pr_max:7.057},
+    {name:"Northern Areas", month:"April", pr_sum:33.477, pr_mean:2.790, pr_max:3.916},
+    {name:"Northern Areas", month:"May", pr_sum:35.510, pr_mean:2.959, pr_max:4.178},
+    {name:"Northern Areas", month:"June", pr_sum:13.209, pr_mean:1.101, pr_max:1.775},
+    {name:"Northern Areas", month:"July", pr_sum:24.912, pr_mean:2.076, pr_max:4.708},
+    {name:"Northern Areas", month:"August", pr_sum:17.309, pr_mean:1.442, pr_max:3.255},
+    {name:"Northern Areas", month:"September", pr_sum:9.082, pr_mean:0.757, pr_max:1.380},
+    {name:"Northern Areas", month:"October", pr_sum:33.696, pr_mean:2.808, pr_max:3.577},
+    {name:"Northern Areas", month:"November", pr_sum:8.854, pr_mean:0.738, pr_max:1.068},
+    {name:"Northern Areas", month:"December", pr_sum:27.637, pr_mean:2.303, pr_max:3.325},
+
+    {name:"Punjab", month:"January", pr_sum:0.731, pr_mean:0.024, pr_max:0.216},
+    {name:"Punjab", month:"February", pr_sum:13.565, pr_mean:0.452, pr_max:2.504},
+    {name:"Punjab", month:"March", pr_sum:27.526, pr_mean:0.918, pr_max:3.521},
+    {name:"Punjab", month:"April", pr_sum:0.791, pr_mean:0.026, pr_max:0.230},
+    {name:"Punjab", month:"May", pr_sum:0.020, pr_mean:0.001, pr_max:0.002},
+    {name:"Punjab", month:"June", pr_sum:0.002, pr_mean:0.000, pr_max:0.000},
+    {name:"Punjab", month:"July", pr_sum:11.732, pr_mean:0.391, pr_max:2.145},
+    {name:"Punjab", month:"August", pr_sum:14.615, pr_mean:0.487, pr_max:2.350},
+    {name:"Punjab", month:"September", pr_sum:21.694, pr_mean:0.723, pr_max:2.248},
+    {name:"Punjab", month:"October", pr_sum:0.146, pr_mean:0.005, pr_max:0.033},
+    {name:"Punjab", month:"November", pr_sum:0.004, pr_mean:0.000, pr_max:0.001},
+    {name:"Punjab", month:"December", pr_sum:3.119, pr_mean:0.104, pr_max:0.890},
+
+    {name:"Sindh", month:"January", pr_sum:0.001, pr_mean:0.000, pr_max:0.000},
+    {name:"Sindh", month:"February", pr_sum:0.156, pr_mean:0.008, pr_max:0.017},
+    {name:"Sindh", month:"March", pr_sum:0.145, pr_mean:0.007, pr_max:0.016},
+    {name:"Sindh", month:"April", pr_sum:0.008, pr_mean:0.000, pr_max:0.002},
+    {name:"Sindh", month:"May", pr_sum:0.114, pr_mean:0.006, pr_max:0.024},
+    {name:"Sindh", month:"June", pr_sum:0.253, pr_mean:0.013, pr_max:0.032},
+    {name:"Sindh", month:"July", pr_sum:2.657, pr_mean:0.133, pr_max:0.423},
+    {name:"Sindh", month:"August", pr_sum:1.758, pr_mean:0.088, pr_max:0.171},
+    {name:"Sindh", month:"September", pr_sum:18.811, pr_mean:0.941, pr_max:1.811},
+    {name:"Sindh", month:"October", pr_sum:0.086, pr_mean:0.004, pr_max:0.015},
+    {name:"Sindh", month:"November", pr_sum:0.009, pr_mean:0.000, pr_max:0.001},
+    {name:"Sindh", month:"December", pr_sum:0.000, pr_mean:0.000, pr_max:0.000}
+];
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const regions = ["KPK", "Punjab", "Sindh", "Balochistan"];
+
+// Approximated bounding Polygons for Pakistani Provinces
+const pakistanProvincesGeoJSON = {
     "type": "FeatureCollection",
     "features": [
-        { "type": "Feature", "properties": { "name": "Connecticut" }, "geometry": { "type": "Polygon", "coordinates": [[[-73.5, 42.0], [-71.8, 42.0], [-71.8, 41.3], [-72.5, 41.2], [-73.5, 41.0], [-73.5, 42.0]]] }},
-        { "type": "Feature", "properties": { "name": "Maryland" }, "geometry": { "type": "Polygon", "coordinates": [[[-79.5, 39.7], [-75.0, 39.7], [-75.1, 38.0], [-76.3, 37.9], [-77.0, 38.3], [-77.9, 39.4], [-79.5, 39.5], [-79.5, 39.7]]] }},
-        { "type": "Feature", "properties": { "name": "New Jersey" }, "geometry": { "type": "Polygon", "coordinates": [[[-75.2, 39.9], [-74.7, 41.4], [-73.9, 41.0], [-74.0, 40.0], [-74.9, 38.9], [-75.6, 39.4], [-75.2, 39.9]]] }},
-        { "type": "Feature", "properties": { "name": "New York" }, "geometry": { "type": "Polygon", "coordinates": [[[-79.8, 42.0], [-79.0, 42.8], [-79.0, 43.6], [-75.2, 45.0], [-73.3, 45.0], [-71.8, 41.0], [-74.0, 40.5], [-75.1, 41.4], [-79.8, 42.0]]] }},
-        { "type": "Feature", "properties": { "name": "Pennsylvania" }, "geometry": { "type": "Polygon", "coordinates": [[[-80.5, 42.0], [-74.7, 41.4], [-75.2, 39.9], [-75.7, 39.7], [-79.5, 39.7], [-80.5, 39.7], [-80.5, 42.0]]] }}
+        { "type": "Feature", "properties": { "name": "KPK" }, "geometry": { "type": "Polygon", "coordinates": [[[71.0, 32.0], [71.5, 34.0], [73.5, 36.0], [74.5, 35.5], [73.0, 33.5], [71.5, 32.0], [71.0, 32.0]]] }},
+        { "type": "Feature", "properties": { "name": "Punjab" }, "geometry": { "type": "Polygon", "coordinates": [[[70.0, 28.0], [71.0, 30.5], [71.5, 32.0], [73.0, 33.5], [74.5, 32.8], [75.5, 31.0], [74.0, 28.5], [70.0, 28.0]]] }},
+        { "type": "Feature", "properties": { "name": "Sindh" }, "geometry": { "type": "Polygon", "coordinates": [[[68.0, 24.0], [67.0, 25.0], [68.0, 27.0], [70.0, 28.0], [71.0, 27.5], [69.0, 24.0], [68.0, 24.0]]] }},
+        { "type": "Feature", "properties": { "name": "Balochistan" }, "geometry": { "type": "Polygon", "coordinates": [[[61.0, 25.0], [62.0, 29.0], [66.0, 30.0], [70.0, 28.0], [68.0, 27.0], [67.0, 25.0], [61.0, 25.0]]] }}
     ]
 };
 
-// Map dynamically re-centered over the US Mid-Atlantic/Northeast (Lat: 41.0, Lon: -76.0)
+// Map centered around Central Pakistan (Lat: 30.0, Lon: 69.5)
 const map = L.map('map', {
     zoomControl: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, touchZoom: false
-}).setView([41.0, -76.0], 6.0);
+}).setView([29.5, 68.5], 5.2);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
@@ -96,11 +112,11 @@ let chartInstances = {};
 function getColor(value, metric) {
     if (value === null || value === undefined) return '#e2e8f0';
     if (metric === 'pr_sum') {
-        return value > 120 ? '#084594' : value > 80  ? '#2171b5' : value > 40  ? '#4292c6' : value > 10  ? '#9ecae1' : '#f7fbff';
+        return value > 300 ? '#084594' : value > 150 ? '#2171b5' : value > 75  ? '#4292c6' : value > 20  ? '#9ecae1' : '#f7fbff';
     } else if (metric === 'pr_mean') {
-        return value > 8   ? '#005a32' : value > 5   ? '#41ab5d' : value > 3   ? '#74c476' : value > 1   ? '#c7e9c0' : '#f7fcf5';
+        return value > 10  ? '#005a32' : value > 6   ? '#41ab5d' : value > 3   ? '#74c476' : value > 0.5 ? '#c7e9c0' : '#f7fcf5';
     } else {
-        return value > 8   ? '#4a148c' : value > 6   ? '#7b1fa2' : value > 4   ? '#9c27b0' : value > 2   ? '#e040fb' : '#f3e5f5';
+        return value > 80  ? '#4a148c' : value > 40  ? '#7b1fa2' : value > 15  ? '#9c27b0' : value > 5   ? '#e040fb' : '#f3e5f5';
     }
 }
 
@@ -120,7 +136,7 @@ function highlightFeature(e) {
     layer.bringToFront();
     infoPanel.update(layer.feature.properties);
     
-    const card = document.getElementById(`card-${layer.feature.properties.name.toLowerCase().replace(/\s+/g, '-')}`);
+    const card = document.getElementById(`card-${layer.feature.properties.name.toLowerCase()}`);
     if (card) card.style.borderColor = '#38bdf8';
 }
 
@@ -128,7 +144,7 @@ function resetHighlight(e) {
     geojsonLayer.resetStyle(e.target);
     infoPanel.update();
     
-    const card = document.getElementById(`card-${e.target.feature.properties.name.toLowerCase().replace(/\s+/g, '-')}`);
+    const card = document.getElementById(`card-${e.target.feature.properties.name.toLowerCase()}`);
     if (card) card.style.borderColor = 'rgba(125, 211, 252, 0.15)';
 }
 
@@ -151,10 +167,10 @@ infoPanel.update = function (props) {
         const valSum = getMetricValue(props.name, currentMonth, 'pr_sum');
         const valMean = getMetricValue(props.name, currentMonth, 'pr_mean');
         const valMax = getMetricValue(props.name, currentMonth, 'pr_max');
-        this._div.innerHTML = `<h4>${props.name}</h4><b>Month:</b> ${currentMonth}<br/><br/>` +
+        this._div.innerHTML = `<h4>${props.name} Province</h4><b>Month:</b> ${currentMonth}<br/><br/>` +
             (valSum !== null ? `Total Rainfall: <b>${valSum.toFixed(1)}</b> mm<br/>Mean Daily: <b>${valMean.toFixed(2)}</b> mm<br/>Max Peak Day: <b>${valMax.toFixed(1)}</b> mm` : `<span class="no-data-msg">No data found</span>`);
     } else {
-        this._div.innerHTML = '<h4>Regional Statistics</h4>Hover over a state';
+        this._div.innerHTML = '<h4>Regional Statistics</h4>Hover over a province';
     }
 };
 infoPanel.addTo(map);
@@ -169,13 +185,13 @@ mapLegend.updateLegend = function() {
     let grades;
     this._div.innerHTML = `<h4>Legend</h4>`;
     if (currentMetric === 'pr_sum') {
-        grades = [0, 10, 40, 80, 120];
+        grades = [0, 20, 75, 150, 300];
         this._div.innerHTML += `<strong>Precipitation (mm)</strong><br>`;
     } else if (currentMetric === 'pr_mean') {
-        grades = [0, 1, 3, 5, 8];
+        grades = [0, 0.5, 3, 6, 10];
         this._div.innerHTML += `<strong>Mean Daily (mm)</strong><br>`;
     } else {
-        grades = [0, 2, 4, 6, 8];
+        grades = [0, 5, 15, 40, 80];
         this._div.innerHTML += `<strong>Max Recorded (mm)</strong><br>`;
     }
     for (let i = 0; i < grades.length; i++) {
@@ -187,7 +203,7 @@ mapLegend.addTo(map);
 
 function updateMapLayer() {
     if (geojsonLayer) { map.removeLayer(geojsonLayer); }
-    geojsonLayer = L.geoJson(usStatesGeoJSON, { style: style, onEachFeature: onEachFeature }).addTo(map);
+    geojsonLayer = L.geoJson(pakistanProvincesGeoJSON, { style: style, onEachFeature: onEachFeature }).addTo(map);
     infoPanel.update();
     mapLegend.updateLegend();
 }
@@ -201,7 +217,7 @@ function getDaysInMonth(monthName) {
     return monthDays[monthName] || 30;
 }
 
-// Emulates the structural variations modeling Hurricane Sandy's landfall timeframe (late October)
+// Generates structural day-to-day variations modeling extreme cloudburst events during late July
 function generateDailyData(region, month, metric, numDays) {
     const monthlyAggregate = getMetricValue(region, month, metric);
     if (monthlyAggregate === null) return [];
@@ -209,14 +225,14 @@ function generateDailyData(region, month, metric, numDays) {
     let dailyPoints = [];
     for (let day = 1; day <= numDays; day++) {
         let weight = 0.2; 
-        // Sandy made landfall on Oct 29-30, 2012. Heavy remnants shifted through early November.
-        if (month === "October" && day >= 27 && day <= 31) {
-            weight = (region === "New Jersey" || region === "New York" || region === "Maryland") ? 5.5 : 3.0;
-        } else if (month === "November" && day >= 1 && day <= 3) {
-            weight = 2.5;
+        // Emulate the massive anomalous peak system between July 27th - July 30th
+        if (month === "July" && day >= 25 && day <= 30) {
+            weight = (region === "KPK" || region === "Punjab") ? 4.5 : 2.0;
+        } else if (month === "August" && day >= 5 && day <= 12) {
+            weight = 3.2; // Second break burst down into Sindh
         }
         let cyclicVar = Math.sin(day * 0.9) * Math.cos(day * 0.4);
-        let pointBase = (monthlyAggregate / numDays) * (1 + cyclicVar * 0.5) * weight;
+        let pointBase = (monthlyAggregate / numDays) * (1 + cyclicVar * 0.7) * weight;
         dailyPoints.push(Math.max(0, pointBase));
     }
     return dailyPoints;
@@ -224,19 +240,17 @@ function generateDailyData(region, month, metric, numDays) {
 
 function initLineCharts() {
     const colors = { 
-        "Connecticut": "#4ade80",
-        "Maryland": "#38bdf8",
-        "New Jersey": "#c084fc",
-        "New York": "#f472b6",
-        "Pennsylvania": "#fb923c"
+        "KPK": "#4ade80",        // Vivid Green
+        "Punjab": "#38bdf8",     // Electric Blue
+        "Sindh": "#c084fc",      // Vibrant Purple
+        "Balochistan": "#f472b6" // Hot Pink
     };
     
     const bgColors = { 
-        "Connecticut": "rgba(74, 222, 128, 0.03)", 
-        "Maryland": "rgba(56, 189, 248, 0.03)", 
-        "New Jersey": "rgba(192, 132, 252, 0.03)", 
-        "New York": "rgba(244, 114, 182, 0.03)",
-        "Pennsylvania": "rgba(251, 146, 60, 0.03)"
+        "KPK": "rgba(74, 222, 128, 0.03)", 
+        "Punjab": "rgba(56, 189, 248, 0.03)", 
+        "Sindh": "rgba(192, 132, 252, 0.03)", 
+        "Balochistan": "rgba(244, 114, 182, 0.03)" 
     };
 
     const totalDays = getDaysInMonth(currentMonth);
@@ -255,12 +269,8 @@ function initLineCharts() {
     const sharedYMax = globalMax * 1.15;
 
     regions.forEach(region => {
-        const isLeftmost = (region === "Connecticut");
-        const elementId = `chart-${region.toLowerCase().replace(/\s+/g, '-')}`;
-        const canvas = document.getElementById(elementId);
-        if (!canvas) return; // Safeguard if structural DOM items match 4 entries instead of 5
-        
-        const ctx = canvas.getContext('2d');
+        const isLeftmost = (region === "KPK");
+        const ctx = document.getElementById(`chart-${region.toLowerCase()}`).getContext('2d');
         
         chartInstances[region] = new Chart(ctx, {
             type: 'line',
@@ -386,3 +396,27 @@ window.addEventListener('load', function() {
         setTimeout(() => intro.classList.add("hidden"), 950);
     });
 })();
+
+// Timed annotation: show for 10 seconds, then fade into a button
+document.addEventListener("DOMContentLoaded", () => {
+  const annotation = document.getElementById("map-annotation");
+  const toggleButton = document.getElementById("annotation-toggle");
+
+  if (!annotation || !toggleButton) return;
+
+  function hideAnnotation() {
+    annotation.classList.add("is-hidden");
+    toggleButton.classList.add("is-visible");
+  }
+
+  function showAnnotation() {
+    annotation.classList.remove("is-hidden");
+    toggleButton.classList.remove("is-visible");
+
+    setTimeout(hideAnnotation, 10000);
+  }
+
+  setTimeout(hideAnnotation, 10000);
+
+  toggleButton.addEventListener("click", showAnnotation);
+});
