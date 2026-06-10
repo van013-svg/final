@@ -387,3 +387,27 @@ window.addEventListener('load', function() {
         setTimeout(() => intro.classList.add("hidden"), 950);
     });
 })();
+
+// Timed annotation: show for 10 seconds, then fade into a button
+document.addEventListener("DOMContentLoaded", () => {
+  const annotation = document.getElementById("map-annotation");
+  const toggleButton = document.getElementById("annotation-toggle");
+
+  if (!annotation || !toggleButton) return;
+
+  function hideAnnotation() {
+    annotation.classList.add("is-hidden");
+    toggleButton.classList.add("is-visible");
+  }
+
+  function showAnnotation() {
+    annotation.classList.remove("is-hidden");
+    toggleButton.classList.remove("is-visible");
+
+    setTimeout(hideAnnotation, 10000);
+  }
+
+  setTimeout(hideAnnotation, 10000);
+
+  toggleButton.addEventListener("click", showAnnotation);
+});
